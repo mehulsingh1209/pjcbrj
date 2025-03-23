@@ -751,7 +751,15 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="copyright">
         <p>© 2025 Parsa Job Centre. All rights reserved.</p>
         <p>Licensed by Government of Nepal.</p>
-      <p>Designed by <span class="dev-credit"><span class="code-tag"></></span><a href="https://msr-portfolio.vercel.app/">MSR</a></span></p>
+      <p>Designed by 
+  <span class="dev-credit">
+    <span class="code-tag"><i class="fas fa-code"></i></span>
+    <a href="https://msr-portfolio.vercel.app/" class="msr-link">
+      
+      <span class="msr-text">MSR</span>
+    </a>
+  </span>
+</p>
       </div>
     </div>
   </div>
@@ -993,6 +1001,33 @@ document.addEventListener('DOMContentLoaded', function() {
         font-size: 1.1rem;
       }
     }
+
+      .msr-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 5px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  font-weight: bold;
+  color: #0066cc;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.msr-link:hover {
+  background: #e0e0e0;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+}
+
+.msr-icon {
+  margin-right: 4px;
+}
+
+.code-tag {
+  color: #666;
+  margin-right: 5px;
+}
     
     /* Font imports */
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
