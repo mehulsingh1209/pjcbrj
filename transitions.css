@@ -1,0 +1,419 @@
+/* Transitions CSS - Creative animations and transitions for Parsa Job Centre */
+
+/* Page Transition Effects */
+body {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Smooth scrolling with enhanced easing */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Adjust based on header height */
+}
+
+/* Navigation hover effects */
+.nav-links a {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #1a73e8;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* Button hover animations */
+.btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease-in-out;
+    z-index: -1;
+}
+
+.btn:hover::before {
+    left: 0;
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* Hero section animations */
+.hero-content h1 {
+    animation: slideInDown 1s ease-out;
+}
+
+.hero-content p {
+    animation: slideInUp 1s ease-out 0.3s;
+    animation-fill-mode: both;
+}
+
+.hero-buttons {
+    animation: fadeIn 1s ease-out 0.6s;
+    animation-fill-mode: both;
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Service card hover effects with 3D perspective */
+.service-card {
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+.service-card:hover {
+    transform: translateY(-15px) rotateX(5deg);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+}
+
+.service-card i {
+    transition: transform 0.5s ease, color 0.3s ease;
+}
+
+.service-card:hover i {
+    transform: scale(1.2) translateY(-5px);
+    color: #4caf50;
+}
+
+/* Stats counter animation */
+.counter {
+    transition: color 0.3s ease;
+}
+
+.stat-card:hover .counter {
+    color: #4caf50;
+}
+
+/* Job categories hover effect */
+.category {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.category:hover {
+    transform: scale(1.1);
+    background-color: #1a73e8;
+    color: white;
+}
+
+.category i {
+    transition: transform 0.5s ease;
+}
+
+.category:hover i {
+    transform: rotateY(360deg);
+}
+
+/* Partner logos hover effect */
+.logo-placeholder {
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+}
+
+.logo-placeholder:hover {
+    transform: scale(1.05);
+    filter: grayscale(0%);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Testimonial slider enhanced transitions */
+.testimonial {
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Contact form input focus effects */
+.form-group input,
+.form-group textarea {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+}
+
+/* Footer link hover effects */
+.footer-links a {
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: #4caf50;
+    transform: translateX(5px);
+}
+
+/* Social media icons hover effect */
+.social-links a {
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    transform: translateY(-5px);
+    color: #4caf50;
+}
+
+/* Page section reveal animations - enhanced versions */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s cubic-bezier(0.5, 0, 0.1, 1), transform 1s cubic-bezier(0.5, 0, 0.1, 1);
+    will-change: opacity, transform;
+}
+
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animation for grid items */
+.services-grid .service-card,
+.job-categories .category,
+.partner-logos .logo-placeholder {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.services-grid .service-card.active,
+.job-categories .category.active,
+.partner-logos .logo-placeholder.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Apply staggered delay to grid children */
+.services-grid .service-card:nth-child(1),
+.job-categories .category:nth-child(1),
+.partner-logos .logo-placeholder:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.services-grid .service-card:nth-child(2),
+.job-categories .category:nth-child(2),
+.partner-logos .logo-placeholder:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.services-grid .service-card:nth-child(3),
+.job-categories .category:nth-child(3),
+.partner-logos .logo-placeholder:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.services-grid .service-card:nth-child(4),
+.job-categories .category:nth-child(4),
+.partner-logos .logo-placeholder:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+/* Parallax scrolling effect */
+.parallax-section {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: background-position 0.1s ease-out;
+}
+
+/* Pulse animation for CTA buttons */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(26, 115, 232, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(26, 115, 232, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(26, 115, 232, 0);
+    }
+}
+
+.cta-btn {
+    animation: pulse 2s infinite;
+}
+
+/* Page loader animation */
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #1a73e8;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Mobile menu animation */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+.nav-links.mobile-active {
+    animation: slideInRight 0.3s forwards;
+}
+
+.nav-links.mobile-inactive {
+    animation: slideOutRight 0.3s forwards;
+}
+
+/* Image hover zoom effect */
+.about-image img,
+.testimonial-img img {
+    transition: transform 0.5s ease;
+}
+
+.about-image:hover img,
+.testimonial-img:hover img {
+    transform: scale(1.05);
+}
+
+/* Custom cursor effect */
+.custom-cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgba(26, 115, 232, 0.3);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background-color 0.3s;
+    mix-blend-mode: difference;
+}
+
+.custom-cursor.active {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(26, 115, 232, 0.1);
+}
+
+/* Text reveal animation */
+.text-reveal {
+    position: relative;
+    overflow: hidden;
+}
+
+.text-reveal span {
+    display: inline-block;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.text-reveal.active span {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Apply staggered delay to text characters */
+.text-reveal span:nth-child(1) { transition-delay: 0.1s; }
+.text-reveal span:nth-child(2) { transition-delay: 0.15s; }
+.text-reveal span:nth-child(3) { transition-delay: 0.2s; }
+.text-reveal span:nth-child(4) { transition-delay: 0.25s; }
+.text-reveal span:nth-child(5) { transition-delay: 0.3s; }
+/* Continue for more characters as needed */
+
+/* Media queries for responsive animations */
+@media (max-width: 768px) {
+    .service-card:hover,
+    .category:hover {
+        transform: translateY(-5px);
+    }
+    
+    .scroll-reveal {
+        transform: translateY(30px);
+    }
+}

@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parsa Job Centre</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="transitions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nepali-date-picker/2.0.1/nepali-datepicker.min.css">
+    <script src="scroll.js" defer></script>
+    <script src="animations.js" defer></script>
+    <style>
+        /* Interactive Contact Card Styles */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 800px;
+            width: 100%;
+            margin: 40px auto;
+        }
+        
+        .contact-card {
+            position: relative;
+            height: 200px;
+            border-radius: 15px;
+            background: linear-gradient(145deg, #ffffff, #e6e6e6);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.1),
+                        -5px -5px 15px rgba(255,255,255,0.8);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 8px 8px 20px rgba(0,0,0,0.15),
+                        -8px -8px 20px rgba(255,255,255,0.9);
+        }
+        
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.6s ease-in-out;
+            backface-visibility: hidden;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .card-back {
+            transform: rotateY(180deg);
+            background: #fff;
+        }
+        
+        .contact-card:hover .card-front {
+            transform: rotateY(180deg);
+        }
+        
+        .contact-card:hover .card-back {
+            transform: rotateY(0deg);
+        }
+        
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+            background: linear-gradient(145deg, #4a89dc, #5d9cee);
+            color: white;
+            font-size: 30px;
+            box-shadow: 0 10px 20px rgba(93, 156, 238, 0.3);
+        }
+        
+        .contact-card:nth-child(2) .icon-circle {
+            background: linear-gradient(145deg, #e74c3c, #ff6b6b);
+            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
+        }
+        
+        .contact-card:nth-child(3) .icon-circle {
+            background: linear-gradient(145deg, #3498db, #2ecc71);
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
+        }
+        
+        .contact-card:nth-child(4) .icon-circle {
+            background: linear-gradient(145deg, #f1c40f, #f39c12);
+            box-shadow: 0 10px 20px rgba(243, 156, 18, 0.3);
+        }
+        
+        .info-list {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .info-item {
+            margin-bottom: 8px;
+        }
+        
+        .info-item a {
+            color: #4a89dc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .info-item a:hover {
+            color: #2c3e50;
+        }
+        
+        .back-text {
+            margin-top: 15px;
+            font-style: italic;
+            font-size: 12px;
+            color: #999;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Parsa<span>Job Centre</span></h1>
+            </div>
+            <div class="nepali-datetime">
+                <div id="nepali-clock"></div>
+                <div id="nepali-date"></div>
+            </div>
+            <nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#jobs">Job Types</a></li>
+                    <li><a href="#success">Success Stories</a></li>
+                    <li><a href="#contact" class="cta-btn">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero" style="background-image: url('BirgunjDroneView.webp'); background-size: cover; background-position: center;">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Finding The Right Talent For Your Business</h1>
+                <p>Connecting qualified candidates with top employers since 2014</p>
+                <div class="hero-buttons">
+                    <a href="#jobs" class="btn primary-btn">Find Jobs</a>
+                    <a href="#contact" class="btn secondary-btn">Hire Talent</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Parsa Job Centre</h2>
+                <p>Your Trusted Recruitment Partner</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="about-image.jpg" alt="Office team meeting">
+                </div>
+                <div class="about-text">
+                    <h3>Who We Are</h3>
+                    <p><strong>Parsa Job Center Pvt. Ltd.</strong> is a premier recruitment agency based in Birgunj, Parsa, dedicated to bridging the gap between talented professionals and leading businesses across various industries.</p>
+                    <p>With years of experience in the recruitment field, we have developed a deep understanding of both employer needs and candidate aspirations, allowing us to create perfect matches that drive business growth and career advancement.</p>
+                    <h3>Our Mission</h3>
+                    <p>To provide exceptional recruitment services that transform businesses and enrich careers through strategic talent acquisition and placement.</p>
+                    <div class="company-details">
+                        <p><i class="fas fa-building"></i> <strong>Regd. No.:</strong> 127304/071/072</p>
+                        <p><i class="fas fa-file-invoice"></i> <strong>PAN No.:</strong> 602424004</p>
+                        <p><i class="fas fa-briefcase"></i> <strong>Services:</strong> Job & HR Solutions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p>Comprehensive Recruitment Solutions</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Permanent Staffing</h3>
+                    <p>Find full-time employees who will be valuable long-term assets to your company.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Temporary Staffing</h3>
+                    <p>Flexible workforce solutions to meet your short-term and seasonal needs.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-search"></i>
+                    <h3>Executive Search</h3>
+                    <p>Specialized recruitment for senior management and leadership positions.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Contract Staffing</h3>
+                    <p>Project-based professionals to supplement your team for specific initiatives.</p>
+                </div>
+            </div>
+            <div class="services-note">
+                <p><i class="fas fa-info-circle"></i> <strong>Note:</strong> Contact us for any type of Job & HR solution.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="stats" class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3 class="counter" data-target="300">0</h3>
+                    <p>Partner Companies</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="counter" data-target="1000">0</h3>
+                    <p>Jobs Filled</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="counter" data-target="5000">0</h3>
+                    <p>Happy Candidates</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="counter" data-target="10">0</h3>
+                    <p>Years Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="jobs" class="job-types">
+        <div class="container">
+            <div class="section-header">
+                <h2>Job Categories</h2>
+                <p>We Connect Talent Across Various Roles</p>
+            </div>
+            <div class="job-categories">
+                <div class="category">
+                    <i class="fas fa-hard-hat"></i>
+                    <h3>Labour</h3>
+                </div>
+                <div class="category">
+                    <i class="fas fa-broom"></i>
+                    <h3>Peon</h3>
+                </div>
+                <div class="category">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Guard</h3>
+                </div>
+                <div class="category">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Accountant</h3>
+                </div>
+                <div class="category">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Waiter</h3>
+                </div>
+                <div class="category">
+                    <i class="fas fa-concierge-bell"></i>
+                    <h3>Receptionist</h3>
+                </div>
+                <div class="category">
+                    <i class="fas fa-store"></i>
+                    <h3>Sales Man</h3>
+                </div>
+                <div class="category">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Area Sales Manager</h3>
+                </div>
+                <div class="category">
+                    <i class="fas fa-tasks"></i>
+                    <h3>Supervisor</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="partnership" class="partnership">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Partnership Network</h2>
+                <p>Connecting With Over 300 Companies</p>
+            </div>
+            <div class="partnership-content">
+                <div class="partner-logos">
+                    <div class="logo-placeholder">
+                        <img src="CG.jpeg" alt="Chaudhary Group">
+                        <p>Chaudhary Group</p>
+                    </div>
+                    <div class="logo-placeholder">
+                        <img src="Shivshaktighee.png" alt="Shiv Shakti Ghee Udyog">
+                        <p>Shiv Shakti Ghee Udyog</p>
+                    </div>
+                    <div class="logo-placeholder">
+                        <img src="Dryport.jpg" alt="Dry Port Birgunj">
+                        <p>Dry Port Birgunj</p>
+                    </div>
+                    <div class="logo-placeholder">
+                        <img src="Kalash Cement.jpeg" alt="Kalash Cement">
+                        <p>Kalash Cement</p>
+                    </div>
+                    <div class="logo-placeholder">
+                        <img src="KishanPipe.jpg" alt="Biratnagar Kissan Pipe">
+                        <p>Biratnagar Kissan Pipe</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="success" class="success-stories">
+        <div class="container">
+            <div class="section-header">
+                <h2>Success Stories</h2>
+                <p>Our Placed Candidates</p>
+            </div>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <div class="testimonial-img">
+                        <img src="testimonial1.svg" alt="Testimonial 1">
+                    </div>
+                    <p>"Parsa Job Centre helped me find my dream job as an accountant in less than a month. Their team was professional and supportive throughout the process."</p>
+                    <h4>Rajesh Sharma</h4>
+                    <p class="position">Senior Accountant</p>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-img">
+                        <img src="testimonial2.svg" alt="Testimonial 2">
+                    </div>
+                    <p>"We've been working with Parsa Job Centre for over 5 years and they consistently provide us with qualified candidates who fit our company culture."</p>
+                    <h4>Priya Patel</h4>
+                    <p class="position">HR Manager</p>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-img">
+                        <img src="testimonial3.svg" alt="Testimonial 3">
+                    </div>
+                    <p>"After struggling to find work for months, Parsa Job Centre placed me in a great position as a sales manager. I'm grateful for their guidance."</p>
+                    <h4>Amit Kumar</h4>
+                    <p class="position">Area Sales Manager</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+                <p>Get In Touch With Our Team</p>
+            </div>
+            
+            <!-- Interactive Contact Cards -->
+            <div class="contact-grid">
+                <!-- Person Card -->
+                <div class="contact-card">
+                    <div class="card-front">
+                        <div class="icon-circle">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>Contact Person</h3>
+                        <p>Click to view details</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Contact Person</h3>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <p>Bharat Bhushan Pandey</p>
+                            </div>
+                            <div class="info-item">
+                                <p>Recruitment Specialist</p>
+                            </div>
+                        </div>
+                        <p class="back-text">Flip back to see icon</p>
+                    </div>
+                </div>
+                
+                <!-- Phone Card -->
+                <div class="contact-card">
+                    <div class="card-front">
+                        <div class="icon-circle">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Phone</h3>
+                        <p>Click to view details</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Call Us</h3>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <a href="tel:9865313388">9865313388</a>
+                            </div>
+                            <div class="info-item">
+                                <a href="tel:9817213384">9817213384</a>
+                            </div>
+                        </div>
+                        <p class="back-text">Flip back to see icon</p>
+                    </div>
+                </div>
+                
+                <!-- Email Card -->
+                <div class="contact-card">
+                    <div class="card-front">
+                        <div class="icon-circle">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email</h3>
+                        <p>Click to view details</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Email Us</h3>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <a href="mailto:bharatbhushanp8@gmail.com">bharatbhushanp8@gmail.com</a>
+                            </div>
+                            <div class="info-item">
+                                <a href="mailto:parsajobcenter4u@gmail.com">parsajobcenter4u@gmail.com</a>
+                            </div>
+                        </div>
+                        <p class="back-text">Flip back to see icon</p>
+                    </div>
+                </div>
+                
+                <!-- Location Card -->
+                <div class="contact-card">
+                    <div class="card-front">
+                        <div class="icon-circle">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Location</h3>
+                        <p>Click to view details</p>
+                    </div>
+                    <div class="card-back">
+                        <h3>Find Us</h3>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <p>Panitanki, Birgunj-8, Parsa (Nepal)</p>
+                            </div>
+                            <div class="info-item">
+                                <p>Near BPC college old building</p>
+                            </div>
+                            <div class="info-item">
+                                <a href="https://maps.google.com/?q=27.014523,84.881982" target="_blank">View on Map</a>
+                            </div>
+                        </div>
+                        <p class="back-text">Flip back to see icon</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-container">
+                <!-- Modified contact form HTML -->
+<form id="contactForm">
+  <div class="row">
+    <div class="col-md-6 form-group">
+      <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+    </div>
+    <div class="col-md-6 form-group mt-3 mt-md-0">
+      <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+    </div>
+  </div>
+  <div class="form-group mt-3">
+    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
+  </div>
+  <div class="form-group mt-3">
+    <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
+  </div>
+  <div class="text-center">
+    <button type="submit">Send Message</button>
+  </div>
+</form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="location" class="location">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Location</h2>
+                <p>Find Us Here</p>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3553.9778020059376!2d84.88198237586967!3d27.014523055909196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDAwJzUyLjciTiA4NMKwNTMnMDMuMCJF!5e0!3m2!1sen!2snp!4v1710927516578!5m2!1sen!2snp" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <style>
+  /* Reset and base styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+  }
+
+  /* Footer styles */
+  .footer {
+    background-color: #f8f9fa;
+    padding: 2rem 0;
+    border-top: 1px solid #e9ecef;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+
+  .footer-main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .footer-brand {
+    flex-basis: 100%;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .footer-brand h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-brand span {
+    color: #0066cc;
+  }
+
+  .footer-brand p {
+    color: #6c757d;
+  }
+
+  .footer-sections {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin: 0 10px 20px;
+    text-align: center;
+  }
+
+  .footer-section h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #343a40;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+  }
+
+  .footer-section h3:after {
+    content: '';
+    position: absolute;
+    left: 25%;
+    bottom: 0;
+    width: 50%;
+    height: 2px;
+    background-color: #0066cc;
+  }
+
+  .footer-links ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .footer-links a {
+    text-decoration: none;
+    color: #6c757d;
+    transition: all 0.3s ease;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  .footer-links a:hover {
+    color: #0066cc;
+    background-color: rgba(0, 102, 204, 0.1);
+  }
+
+  .contact-info p {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contact-info i {
+    color: #0066cc;
+    margin-right: 0.5rem;
+  }
+
+  .contact-info .label {
+    font-weight: 600;
+    margin-right: 0.25rem;
+  }
+
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .social-icons .facebook {
+    background-color: #3b5998;
+  }
+
+  .social-icons .whatsapp {
+    background-color: #25d366;
+  }
+
+  .social-icons .viber {
+    background-color: #7360f2;
+  }
+
+  .social-icons a:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .services-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .services-note p {
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .services-note i {
+    color: #0066cc;
+    margin-right: 0.5rem;
+  }
+
+  .copyright {
+    padding-top: 1.5rem;
+    border-top: 1px solid #e9ecef;
+    text-align: center;
+    color: #6c757d;
+    font-size: 0.9rem;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .footer-sections {
+      flex-direction: column;
+    }
+    
+    .footer-section {
+      margin-bottom: 2rem;
+    }
+    
+    .footer-links ul {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-main">
+      <!-- Logo and Tagline -->
+      <div class="footer-brand">
+        <h2>Parsa<span>Job Centre</span></h2>
+        <p>Your Trusted Recruitment Partner</p>
+      </div>
+      
+      <div class="footer-sections">
+        <!-- Quick Links -->
+        <div class="footer-section footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#jobs">Job Types</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact Info -->
+        <div class="footer-section contact-info">
+          <h3>Contact Info</h3>
+          <p><i class="fas fa-user"></i> <span class="label">Contact Person:</span> Bharat Bhushan Pandey</p>
+          <p><i class="fas fa-phone"></i> <span>9865313388, 9817213384</span></p>
+          <p><i class="fas fa-envelope"></i> <span>parsajobcenter4u@gmail.com</span></p>
+          <p><i class="fas fa-envelope"></i> <span>bharatbhushanp8@gmail.com</span></p>
+          <p><i class="fas fa-map-marker-alt"></i> <span>Panitanki, Birgunj-8, Parsa (Nepal)</span></p>
+        </div>
+        
+        <!-- Social & Services -->
+        <div class="footer-section">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="#" class="facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://wa.me/9865313388" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="viber"><i class="fab fa-viber"></i></a>
+          </div>
+          <div class="services-note">
+            <p><i class="fas fa-briefcase"></i> <span class="label">Services:</span> Job & HR Solutions</p>
+            <p><i class="fas fa-info-circle"></i> <span class="label">Note:</span> Contact us for any type of Job & HR solution.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>© 2025 Parsa Job Centre. All rights reserved.</p>
+      <p>Licensed by Government of Nepal. All Rights Reserved.</p>
+      <p>Designed by <a href="https://msr-portfolio.vercel.app/" target="_blank"><i class="fas fa-code"></i> MSR</a></p>
+    </div>
+  </div>
+</footer>
+    
+    <div class="whatsapp-button">
+        <a href="https://wa.me/9865313388" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nepali-date-picker/2.0.1/nepali-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script src="script.js"></script>
+    <script src="virtualScroll.js"></script>
+</body>
+</html>
