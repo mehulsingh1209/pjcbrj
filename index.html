@@ -495,69 +495,226 @@
 </div>
 
 <footer>
-  <div class="container">
-    <div class="copyright">
-      <p>© 2025 Parsa Job Centre. All rights reserved.</p>
-      <p>Licensed by Government of Nepal. All Rights Reserved.</p>
-      <p>Designed by <span class="dev-credit"><span class="code-tag">&lt;/&gt;</span> MSR</span></p>
+  <div class="footer-content">
+    <div class="container">
+      <div class="footer-sections">
+        <div class="social-section">
+          <h3 class="section-title">Follow Us</h3>
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" aria-label="WhatsApp"><i class="fa fa-whatsapp"></i></a>
+            <a href="#" aria-label="Viber"><i class="fa fa-phone"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 Parsa Job Centre. All rights reserved.</p>
+        <p>Licensed by Government of Nepal. All Rights Reserved.</p>
+        <p>Designed by <span class="dev-credit"><span class="code-tag">&lt;/&gt;</span> MSR</span></p>
+      </div>
     </div>
   </div>
   
   <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    /* Footer styling */
     footer {
-      background-color: #2c3e50;
+      position: relative;
+      width: 100%;
       color: #ecf0f1;
-      padding: 2rem 0;
-      font-family: 'Arial', sans-serif;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
       margin-top: 3rem;
+    }
+    
+    .footer-content {
+      background-color: #1a5276;
+      padding: 2rem 0;
+      position: relative;
+      z-index: 1;
     }
     
     footer .container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 1rem;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     
+    /* Footer sections */
+    .footer-sections {
+      width: 100%;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .social-section {
+      background-color: rgba(52, 152, 219, 0.2);
+      padding: 1.5rem;
+      border-radius: 4px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .section-title {
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #ffffff;
+      font-family: 'Montserrat', 'Segoe UI', sans-serif;
+      position: relative;
+      display: inline-block;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 2px;
+      background-color: #3498db;
+      bottom: -6px;
+      left: 25%;
+    }
+    
+    /* Social icons */
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+    }
+    
+    .social-icons a {
+      background-color: #3498db;
+      color: #ffffff;
+      width: 42px;
+      height: 42px;
+      border-radius: 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+    }
+    
+    .social-icons a:hover {
+      background-color: #2980b9;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    /* Copyright section */
     footer .copyright {
       text-align: center;
-      font-size: 0.9rem;
-      line-height: 1.6;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      width: 100%;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.5rem;
     }
     
     footer .copyright p {
       margin: 0.5rem 0;
-    }
-    
-    footer .copyright a {
-      color: #3498db;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-    
-    footer .copyright a:hover {
-      color: #2ecc71;
-      text-decoration: underline;
+      letter-spacing: 0.3px;
     }
     
     .dev-credit {
       display: inline-block;
-      font-size: 0.9rem;
+      font-weight: 500;
       color: #ecf0f1;
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: all 0.3s ease;
       cursor: pointer;
+      position: relative;
     }
     
     .dev-credit:hover {
       color: #3498db;
     }
     
+    .dev-credit:hover:after {
+      width: 100%;
+    }
+    
+    .dev-credit:after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #3498db;
+      transition: width 0.3s ease;
+    }
+    
     .code-tag {
       color: #3498db;
-      font-family: monospace;
+      font-family: 'Consolas', monospace;
       font-weight: bold;
       margin-right: 4px;
     }
+    
+    /* Font inclusion */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .footer-content {
+        padding: 1.5rem 0;
+      }
+      
+      footer .container {
+        padding: 0 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.2rem;
+      }
+      
+      .social-icons a {
+        width: 36px;
+        height: 36px;
+      }
+      
+      footer .copyright {
+        font-size: 0.85rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .social-icons {
+        gap: 1rem;
+      }
+      
+      .section-title {
+        font-size: 1.1rem;
+      }
+      
+      .social-icons a {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+      }
+      
+      footer .copyright {
+        font-size: 0.8rem;
+      }
+    }
+    
+    /* Font Awesome inclusion */
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
   </style>
 </footer>
     
