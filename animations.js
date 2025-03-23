@@ -94,6 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.classList.add('active');
             }
         });
+
+        // Check counter animation when scrolling
+        if (!counterAnimated && counters.length > 0 && isInViewport(counters[0])) {
+            counterAnimated = true;
+            animateCounters();
+        }
     });
 
     // Mobile menu animation
@@ -113,5 +119,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 navLinks.classList.add('mobile-active');
             }
         });
+    }
+
+    // Counter Animation functionality
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200; // The lower the faster
+    let counterAnimated = false;
+    
+    function animateCounters() {
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            
+            // Calculate increment
+            const inc = target / speed;
+            
+            // Check if target is reached
+            if (count < target) {
+                // Add inc to count and output in counter
+                counter.innerText = Math.ceil(count + inc);
+                // Call function every ms
+                setTimeout(() => animateCounters(), 1);
+            } else {
+                counter.innerText = target;
+            }
+        });
+    }
+    
+    // Check if element is in viewport
+    function isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+    
+    // Check on page load if counters are in view
+    if (counters.length > 0 && isInViewport(counters[0])) {
+        counterAnimated = true;
+        animateCounters();
     }
 });
