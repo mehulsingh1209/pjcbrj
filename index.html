@@ -2,12 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description" content="Parsa Job Centre - Your trusted recruitment partner in Birgunj, Nepal since 2014. Connecting qualified candidates with top employers.">
     <title>Parsa Job Centre</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="transitions.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nepali-date-picker/2.0.1/nepali-datepicker.min.css">
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style">
+    <link rel="preload" href="styles.css" as="style">
     <script src="scroll.js" defer></script>
     <script src="animations.js" defer></script>
 </head>
@@ -22,10 +26,11 @@
                 <div id="nepali-date"></div>
             </div>
             <nav>
-                <button class="mobile-menu-btn">
+                <!-- Improved accessibility for mobile menu button -->
+                <button class="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
-                <ul class="nav-links">
+                <ul class="nav-links" id="main-nav">
                     <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#services">Services</a></li>
@@ -37,20 +42,20 @@
         </div>
     </header>
 
-    <section id="home" class="hero" style="background-image: url('BirgunjDroneView.webp'); background-size: cover; background-position: center;">
+    <section id="home" class="hero" aria-label="Hero section" style="background-image: url('BirgunjDroneView.webp'); background-size: cover; background-position: center;">
         <div class="container">
             <div class="hero-content">
                 <h1>Finding The Right Talent For Your Business</h1>
                 <p>Connecting qualified candidates with top employers since 2014</p>
                 <div class="hero-buttons">
-                    <a href="#jobs" class="btn primary-btn">Find Jobs</a>
-                    <a href="#contact" class="btn secondary-btn">Hire Talent</a>
+                    <a href="#jobs" class="btn primary-btn" role="button">Find Jobs</a>
+                    <a href="#contact" class="btn secondary-btn" role="button">Hire Talent</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="about" class="about">
+    <section id="about" class="about" aria-label="About us section">
         <div class="container">
             <div class="section-header">
                 <h2>About Parsa Job Centre</h2>
@@ -58,7 +63,7 @@
             </div>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="about-image.jpg" alt="Office team meeting">
+                    <img src="about-image.jpg" alt="Office team meeting" loading="lazy" width="400" height="300">
                 </div>
                 <div class="about-text">
                     <h3>Who We Are</h3>
@@ -67,16 +72,16 @@
                     <h3>Our Mission</h3>
                     <p>To provide exceptional recruitment services that transform businesses and enrich careers through strategic talent acquisition and placement.</p>
                     <div class="company-details">
-                        <p><i class="fas fa-building"></i> <strong>Regd. No.:</strong> 127304/071/072</p>
-                        <p><i class="fas fa-file-invoice"></i> <strong>PAN No.:</strong> 602424004</p>
-                        <p><i class="fas fa-briefcase"></i> <strong>Services:</strong> Job & HR Solutions</p>
+                        <p><i class="fas fa-building" aria-hidden="true"></i> <strong>Regd. No.:</strong> 127304/071/072</p>
+                        <p><i class="fas fa-file-invoice" aria-hidden="true"></i> <strong>PAN No.:</strong> 602424004</p>
+                        <p><i class="fas fa-briefcase" aria-hidden="true"></i> <strong>Services:</strong> Job & HR Solutions</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="services">
+    <section id="services" class="services" aria-label="Services section">
         <div class="container">
             <div class="section-header">
                 <h2>Our Services</h2>
@@ -84,33 +89,33 @@
             </div>
             <div class="services-grid">
                 <div class="service-card">
-                    <i class="fas fa-user-tie"></i>
+                    <i class="fas fa-user-tie" aria-hidden="true"></i>
                     <h3>Permanent Staffing</h3>
                     <p>Find full-time employees who will be valuable long-term assets to your company.</p>
                 </div>
                 <div class="service-card">
-                    <i class="fas fa-clock"></i>
+                    <i class="fas fa-clock" aria-hidden="true"></i>
                     <h3>Temporary Staffing</h3>
                     <p>Flexible workforce solutions to meet your short-term and seasonal needs.</p>
                 </div>
                 <div class="service-card">
-                    <i class="fas fa-search"></i>
+                    <i class="fas fa-search" aria-hidden="true"></i>
                     <h3>Executive Search</h3>
                     <p>Specialized recruitment for senior management and leadership positions.</p>
                 </div>
                 <div class="service-card">
-                    <i class="fas fa-handshake"></i>
+                    <i class="fas fa-handshake" aria-hidden="true"></i>
                     <h3>Contract Staffing</h3>
                     <p>Project-based professionals to supplement your team for specific initiatives.</p>
                 </div>
             </div>
             <div class="services-note">
-                <p><i class="fas fa-info-circle"></i> <strong>Note:</strong> Contact us for any type of Job & HR solution.</p>
+                <p><i class="fas fa-info-circle" aria-hidden="true"></i> <strong>Note:</strong> Contact us for any type of Job & HR solution.</p>
             </div>
         </div>
     </section>
 
-    <section id="stats" class="stats">
+    <section id="stats" class="stats" aria-label="Statistics section">
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-card">
@@ -133,7 +138,7 @@
         </div>
     </section>
 
-    <section id="jobs" class="job-types">
+    <section id="jobs" class="job-types" aria-label="Job categories section">
         <div class="container">
             <div class="section-header">
                 <h2>Job Categories</h2>
@@ -141,46 +146,46 @@
             </div>
             <div class="job-categories">
                 <div class="category">
-                    <i class="fas fa-hard-hat"></i>
+                    <i class="fas fa-hard-hat" aria-hidden="true"></i>
                     <h3>Labour</h3>
                 </div>
                 <div class="category">
-                    <i class="fas fa-broom"></i>
+                    <i class="fas fa-broom" aria-hidden="true"></i>
                     <h3>Peon</h3>
                 </div>
                 <div class="category">
-                    <i class="fas fa-shield-alt"></i>
+                    <i class="fas fa-shield-alt" aria-hidden="true"></i>
                     <h3>Guard</h3>
                 </div>
                 <div class="category">
-                    <i class="fas fa-calculator"></i>
+                    <i class="fas fa-calculator" aria-hidden="true"></i>
                     <h3>Accountant</h3>
                 </div>
                 <div class="category">
-                    <i class="fas fa-utensils"></i>
+                    <i class="fas fa-utensils" aria-hidden="true"></i>
                     <h3>Waiter</h3>
                 </div>
                 <div class="category">
-                    <i class="fas fa-concierge-bell"></i>
+                    <i class="fas fa-concierge-bell" aria-hidden="true"></i>
                     <h3>Receptionist</h3>
                 </div>
                 <div class="category">
-                    <i class="fas fa-store"></i>
+                    <i class="fas fa-store" aria-hidden="true"></i>
                     <h3>Sales Man</h3>
                 </div>
                 <div class="category">
-                    <i class="fas fa-map-marked-alt"></i>
+                    <i class="fas fa-map-marked-alt" aria-hidden="true"></i>
                     <h3>Area Sales Manager</h3>
                 </div>
                 <div class="category">
-                    <i class="fas fa-tasks"></i>
+                    <i class="fas fa-tasks" aria-hidden="true"></i>
                     <h3>Supervisor</h3>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="partnership" class="partnership">
+    <section id="partnership" class="partnership" aria-label="Partnership network section">
         <div class="container">
             <div class="section-header">
                 <h2>Our Partnership Network</h2>
@@ -189,23 +194,23 @@
             <div class="partnership-content">
                 <div class="partner-logos">
                     <div class="logo-placeholder">
-                        <img src="CG.jpeg" alt="Chaudhary Group">
+                        <img src="CG.jpeg" alt="Chaudhary Group" loading="lazy" width="150" height="100">
                         <p>Chaudhary Group</p>
                     </div>
                     <div class="logo-placeholder">
-                        <img src="Shivshaktighee.png" alt="Shiv Shakti Ghee Udyog">
+                        <img src="Shivshaktighee.png" alt="Shiv Shakti Ghee Udyog" loading="lazy" width="150" height="100">
                         <p>Shiv Shakti Ghee Udyog</p>
                     </div>
                     <div class="logo-placeholder">
-                        <img src="Dryport.jpg" alt="Dry Port Birgunj">
+                        <img src="Dryport.jpg" alt="Dry Port Birgunj" loading="lazy" width="150" height="100">
                         <p>Dry Port Birgunj</p>
                     </div>
                     <div class="logo-placeholder">
-                        <img src="Kalash Cement.jpeg" alt="Kalash Cement">
+                        <img src="Kalash Cement.jpeg" alt="Kalash Cement" loading="lazy" width="150" height="100">
                         <p>Kalash Cement</p>
                     </div>
                     <div class="logo-placeholder">
-                        <img src="KishanPipe.jpg" alt="Biratnagar Kissan Pipe">
+                        <img src="KishanPipe.jpg" alt="Biratnagar Kissan Pipe" loading="lazy" width="150" height="100">
                         <p>Biratnagar Kissan Pipe</p>
                     </div>
                 </div>
@@ -213,7 +218,7 @@
         </div>
     </section>
 
-    <section id="success" class="success-stories">
+    <section id="success" class="success-stories" aria-label="Success stories section">
         <div class="container">
             <div class="section-header">
                 <h2>Success Stories</h2>
@@ -222,7 +227,7 @@
             <div class="testimonials">
                 <div class="testimonial">
                     <div class="testimonial-img">
-                        <img src="testimonial1.svg" alt="Testimonial 1">
+                        <img src="testimonial1.svg" alt="Rajesh Sharma" loading="lazy" width="80" height="80">
                     </div>
                     <p>"Parsa Job Centre helped me find my dream job as an accountant in less than a month. Their team was professional and supportive throughout the process."</p>
                     <h4>Rajesh Sharma</h4>
@@ -230,7 +235,7 @@
                 </div>
                 <div class="testimonial">
                     <div class="testimonial-img">
-                        <img src="testimonial2.svg" alt="Testimonial 2">
+                        <img src="testimonial2.svg" alt="Priya Patel" loading="lazy" width="80" height="80">
                     </div>
                     <p>"We've been working with Parsa Job Centre for over 5 years and they consistently provide us with qualified candidates who fit our company culture."</p>
                     <h4>Priya Patel</h4>
@@ -238,7 +243,7 @@
                 </div>
                 <div class="testimonial">
                     <div class="testimonial-img">
-                        <img src="testimonial3.svg" alt="Testimonial 3">
+                        <img src="testimonial3.svg" alt="Amit Kumar" loading="lazy" width="80" height="80">
                     </div>
                     <p>"After struggling to find work for months, Parsa Job Centre placed me in a great position as a sales manager. I'm grateful for their guidance."</p>
                     <h4>Amit Kumar</h4>
@@ -248,7 +253,7 @@
         </div>
     </section>
 
-    <section id="contact" class="contact">
+    <section id="contact" class="contact" aria-label="Contact section">
         <div class="container">
             <div class="section-header">
                 <h2>Contact Us</h2>
@@ -258,13 +263,13 @@
             <!-- Interactive Contact Cards -->
             <div class="contact-grid">
                 <!-- Person Card -->
-                <div class="contact-card">
+                <div class="contact-card" tabindex="0" aria-label="Contact person information">
                     <div class="card-front">
                         <div class="icon-circle">
-                            <i class="fas fa-user"></i>
+                            <i class="fas fa-user" aria-hidden="true"></i>
                         </div>
                         <h3>Contact Person</h3>
-                        <p>Click to view details</p>
+                        <p>Tap to view details</p>
                     </div>
                     <div class="card-back">
                         <h3>Contact Person</h3>
@@ -276,41 +281,41 @@
                                 <p>Recruitment Specialist</p>
                             </div>
                         </div>
-                        <p class="back-text">Flip back to see icon</p>
+                        <p class="back-text">Tap to flip back</p>
                     </div>
                 </div>
                 
                 <!-- Phone Card -->
-                <div class="contact-card">
+                <div class="contact-card" tabindex="0" aria-label="Phone contact information">
                     <div class="card-front">
                         <div class="icon-circle">
-                            <i class="fas fa-phone"></i>
+                            <i class="fas fa-phone" aria-hidden="true"></i>
                         </div>
                         <h3>Phone</h3>
-                        <p>Click to view details</p>
+                        <p>Tap to view details</p>
                     </div>
                     <div class="card-back">
                         <h3>Call Us</h3>
                         <div class="info-list">
                             <div class="info-item">
-                                <a href="tel:9865313388">9865313388</a>
+                                <a href="tel:9865313388" aria-label="Call 9865313388">9865313388</a>
                             </div>
                             <div class="info-item">
-                                <a href="tel:9817213384">9817213384</a>
+                                <a href="tel:9817213384" aria-label="Call 9817213384">9817213384</a>
                             </div>
                         </div>
-                        <p class="back-text">Flip back to see icon</p>
+                        <p class="back-text">Tap to flip back</p>
                     </div>
                 </div>
                 
                 <!-- Email Card -->
-                <div class="contact-card">
+                <div class="contact-card" tabindex="0" aria-label="Email contact information">
                     <div class="card-front">
                         <div class="icon-circle">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
                         </div>
                         <h3>Email</h3>
-                        <p>Click to view details</p>
+                        <p>Tap to view details</p>
                     </div>
                     <div class="card-back">
                         <h3>Email Us</h3>
@@ -322,18 +327,18 @@
                                 <a href="mailto:parsajobcenter4u@gmail.com">parsajobcenter4u@gmail.com</a>
                             </div>
                         </div>
-                        <p class="back-text">Flip back to see icon</p>
+                        <p class="back-text">Tap to flip back</p>
                     </div>
                 </div>
                 
                 <!-- Location Card -->
-                <div class="contact-card">
+                <div class="contact-card" tabindex="0" aria-label="Location information">
                     <div class="card-front">
                         <div class="icon-circle">
-                            <i class="fas fa-map-marker-alt"></i>
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                         </div>
                         <h3>Location</h3>
-                        <p>Click to view details</p>
+                        <p>Tap to view details</p>
                     </div>
                     <div class="card-back">
                         <h3>Find Us</h3>
@@ -345,12 +350,15 @@
                                 <p>Near BPC college old building</p>
                             </div>
                             <div class="info-item">
-                                <a href="https://www.google.com/maps/place/27%C2%B000'52.7%22N+84%C2%B053'03.0%22E/@27.0146427,84.8815956,17z/data=!3m1!4b1!4m4!3m3!8m2!3d27.0146427!4d84.8841705?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D" target="_blank">View on Map</a>
+                                <a href="https://www.google.com/maps/place/27%C2%B000'52.7%22N+84%C2%B053'03.0%22E/@27.0146427,84.8815956,17z/data=!3m1!4b1!4m4!3m3!8m2!3d27.0146427!4d84.8841705?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D" target="_blank" rel="noopener">View on Map</a>
                             </div>
                         </div>
-                        <p class="back-text">Flip back to see icon</p>
+                        <p class="back-text">Tap to flip back</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
                    
     <footer class="footer">
       <div class="container">
@@ -366,24 +374,27 @@
             <!-- Contact Info -->
             <div class="footer-section contact-info">
               <h3>Contact Info</h3>
-              <p><i class="fas fa-user"></i> <span class="label">Contact Person:</span> Bharat Bhushan Pandey</p>
-              <p><i class="fas fa-phone"></i> <span>9865313388, 9817213384</span></p>
-              <p><i class="fas fa-envelope"></i> <span>parsajobcenter4u@gmail.com</span></p>
-              <p><i class="fas fa-envelope"></i> <span>bharatbhushanp8@gmail.com</span></p>
-              <p><i class="fas fa-map-marker-alt"></i> <span>Panitanki, Birgunj-8, Parsa (Nepal)</span></p>
+              <p><i class="fas fa-user" aria-hidden="true"></i> <span class="label">Contact Person:</span> Bharat Bhushan Pandey</p>
+              <p><i class="fas fa-phone" aria-hidden="true"></i> <span>
+                <a href="tel:9865313388">9865313388</a>, 
+                <a href="tel:9817213384">9817213384</a>
+              </span></p>
+              <p><i class="fas fa-envelope" aria-hidden="true"></i> <span><a href="mailto:parsajobcenter4u@gmail.com">parsajobcenter4u@gmail.com</a></span></p>
+              <p><i class="fas fa-envelope" aria-hidden="true"></i> <span><a href="mailto:bharatbhushanp8@gmail.com">bharatbhushanp8@gmail.com</a></span></p>
+              <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> <span>Panitanki, Birgunj-8, Parsa (Nepal)</span></p>
             </div>
             
             <!-- Social & Services -->
             <div class="footer-section">
               <h3>Follow Us</h3>
               <div class="social-icons">
-                <a href="#" class="facebook"><i class="fab fa-facebook"></i></a>
-                <a href="https://wa.me/9865313388" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" class="viber"><i class="fab fa-viber"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                <a href="https://wa.me/9865313388" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Viber"><i class="fab fa-viber" aria-hidden="true"></i></a>
               </div>
               <div class="services-note">
-                <p><i class="fas fa-briefcase"></i> <span class="label">Services:</span> Job & HR Solutions</p>
-                <p><i class="fas fa-info-circle"></i> <span class="label">Note:</span> Contact us for any type of Job & HR solution.</p>
+                <p><i class="fas fa-briefcase" aria-hidden="true"></i> <span class="label">Services:</span> Job & HR Solutions</p>
+                <p><i class="fas fa-info-circle" aria-hidden="true"></i> <span class="label">Note:</span> Contact us for any type of Job & HR solution.</p>
               </div>
             </div>
           </div>
@@ -392,21 +403,47 @@
         <div class="copyright">
           <p>© 2025 Parsa Job Centre. All rights reserved.</p>
           <p>Licensed by Government of Nepal. All Rights Reserved.</p>
-          <p>Designed by <a href="https://msr-portfolio.vercel.app/" target="_blank"><i class="fas fa-code"></i> MSR</a></p>
+          <p>Designed by <a href="https://msr-portfolio.vercel.app/" target="_blank" rel="noopener"><i class="fas fa-code" aria-hidden="true"></i> MSR</a></p>
         </div>
       </div>
     </footer>
     
     <div class="whatsapp-button">
-        <a href="https://wa.me/9865313388" target="_blank">
-            <i class="fab fa-whatsapp"></i>
+        <a href="https://wa.me/9865313388" target="_blank" rel="noopener" aria-label="Contact us on WhatsApp">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
         </a>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/nepali-date-picker/2.0.1/nepali-datepicker.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-    <script src="script.js"></script>
-    <script src="virtualScroll.js"></script>
+    <!-- Deferred loading of non-critical scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/nepali-date-picker/2.0.1/nepali-datepicker.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="virtualScroll.js" defer></script>
+    
+    <!-- Add this script to improve mobile menu functionality -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if(mobileMenuBtn && navLinks) {
+          mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            const expanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true' || false;
+            mobileMenuBtn.setAttribute('aria-expanded', !expanded);
+          });
+          
+          // Close menu when clicking on a link
+          const links = navLinks.querySelectorAll('a');
+          links.forEach(link => {
+            link.addEventListener('click', function() {
+              navLinks.classList.remove('active');
+              mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            });
+          });
+        }
+      });
+    </script>
 </body>
 </html>
