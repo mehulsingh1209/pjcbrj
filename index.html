@@ -500,7 +500,7 @@
               <span class="icon-label">WhatsApp</span>
             </a>
             <a href="viber://chat?number=%2B9779865313388" aria-label="Viber" class="viber-icon">
-              <i class="fa fa-viber"></i>
+              <i class="fa fa-phone"></i>
               <span class="icon-label">Viber</span>
             </a>
           </div>
@@ -560,6 +560,8 @@
       padding: 1.5rem;
       border-radius: 4px;
       text-align: center;
+      width: 100%;
+      max-width: 400px;
     }
     
     .section-title {
@@ -588,8 +590,10 @@
     /* Social icons */
     .social-icons {
       display: flex;
-      justify-content: center;
-      gap: 1.5rem;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
     }
     
     .social-icons a {
@@ -605,6 +609,7 @@
       font-size: 1.2rem;
       color: #ffffff;
       padding: 5px;
+      flex: 0 0 auto;
     }
     
     .social-icons a i {
@@ -702,6 +707,10 @@
         font-size: 1.2rem;
       }
       
+      .social-icons {
+        max-width: 250px;
+      }
+      
       .social-icons a {
         width: 55px;
         height: 65px;
@@ -722,7 +731,7 @@
     
     @media (max-width: 480px) {
       .social-icons {
-        gap: 1.2rem;
+        max-width: 220px;
       }
       
       .section-title {
@@ -748,6 +757,22 @@
       
       .social-section {
         padding: 1.2rem 0.8rem;
+      }
+    }
+    
+    /* Very small screens */
+    @media (max-width: 320px) {
+      .social-icons {
+        max-width: 180px;
+      }
+      
+      .social-icons a {
+        width: 45px;
+        height: 55px;
+      }
+      
+      .icon-label {
+        font-size: 0.65rem;
       }
     }
     
