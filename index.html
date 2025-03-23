@@ -485,15 +485,6 @@
     </section>
                    
 <!-- Social Media -->
-<div class="footer-section">
-  <h3>Follow Us</h3>
-  <div class="social-icons">
-    <a href="https://www.facebook.com/p/Parsa-Job-Center-PvtLtd-100095385249792/" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
-    <a href="https://wa.me/+9779865313388" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-    <a href="viber://chat?number=%2B9779865313388" aria-label="Viber"><i class="fab fa-viber" aria-hidden="true"></i></a>
-  </div>
-</div>
-
 <footer>
   <div class="footer-content">
     <div class="container">
@@ -501,9 +492,9 @@
         <div class="social-section">
           <h3 class="section-title">FOLLOW US</h3>
           <div class="social-icons">
-            <a href="#" aria-label="Facebook" class="facebook-icon"><i class="fa fa-facebook"></i></a>
-            <a href="#" aria-label="WhatsApp" class="whatsapp-icon"><i class="fa fa-whatsapp"></i></a>
-            <a href="#" aria-label="Phone" class="phone-icon"><i class="fa fa-phone"></i></a>
+            <a href="https://www.facebook.com/p/Parsa-Job-Center-PvtLtd-100095385249792/" aria-label="Facebook" class="facebook-icon"><i class="fa fa-facebook"></i></a>
+            <a href="https://wa.me/+9779865313388" aria-label="WhatsApp" class="whatsapp-icon"><i class="fa fa-whatsapp"></i></a>
+            <a href="viber://chat?number=%2B9779865313388" aria-label="Viber" class="phone-icon"><i class="fa fa-viber"></i></a>
           </div>
         </div>
       </div>
@@ -607,7 +598,7 @@
       font-size: 1.2rem;
     }
     
-    /* Matching the style from the screenshot */
+    /* Social icon specific colors */
     .facebook-icon {
       background-color: #1877f2 !important;
     }
@@ -676,10 +667,7 @@
       margin-right: 4px;
     }
     
-    /* Font inclusion */
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
-    
-    /* Responsive adjustments */
+    /* Enhanced mobile responsiveness */
     @media (max-width: 768px) {
       .footer-content {
         padding: 1.5rem 0;
@@ -694,8 +682,8 @@
       }
       
       .social-icons a {
-        width: 36px;
-        height: 36px;
+        width: 40px;
+        height: 40px;
       }
       
       footer .copyright {
@@ -705,7 +693,7 @@
     
     @media (max-width: 480px) {
       .social-icons {
-        gap: 1rem;
+        gap: 1.2rem;
       }
       
       .section-title {
@@ -713,17 +701,22 @@
       }
       
       .social-icons a {
-        width: 32px;
-        height: 32px;
-        font-size: 1rem;
+        width: 38px;
+        height: 38px;
+        font-size: 1.1rem;
       }
       
       footer .copyright {
         font-size: 0.8rem;
       }
+      
+      .social-section {
+        padding: 1.2rem 0.8rem;
+      }
     }
     
-    /* Font Awesome inclusion */
+    /* Font imports */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&display=swap');
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
   </style>
 </footer>    
