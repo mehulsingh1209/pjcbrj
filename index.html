@@ -10,123 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nepali-date-picker/2.0.1/nepali-datepicker.min.css">
     <script src="scroll.js" defer></script>
     <script src="animations.js" defer></script>
-    <style>
-        /* Interactive Contact Card Styles */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            max-width: 800px;
-            width: 100%;
-            margin: 40px auto;
-        }
-        
-        .contact-card {
-            position: relative;
-            height: 200px;
-            border-radius: 15px;
-            background: linear-gradient(145deg, #ffffff, #e6e6e6);
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.1),
-                        -5px -5px 15px rgba(255,255,255,0.8);
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-        
-        .contact-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 8px 8px 20px rgba(0,0,0,0.15),
-                        -8px -8px 20px rgba(255,255,255,0.9);
-        }
-        
-        .card-front, .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: transform 0.6s ease-in-out;
-            backface-visibility: hidden;
-            padding: 20px;
-            text-align: center;
-        }
-        
-        .card-back {
-            transform: rotateY(180deg);
-            background: #fff;
-        }
-        
-        .contact-card:hover .card-front {
-            transform: rotateY(180deg);
-        }
-        
-        .contact-card:hover .card-back {
-            transform: rotateY(0deg);
-        }
-        
-        .icon-circle {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 15px;
-            background: linear-gradient(145deg, #4a89dc, #5d9cee);
-            color: white;
-            font-size: 30px;
-            box-shadow: 0 10px 20px rgba(93, 156, 238, 0.3);
-        }
-        
-        .contact-card:nth-child(2) .icon-circle {
-            background: linear-gradient(145deg, #e74c3c, #ff6b6b);
-            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.3);
-        }
-        
-        .contact-card:nth-child(3) .icon-circle {
-            background: linear-gradient(145deg, #3498db, #2ecc71);
-            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.3);
-        }
-        
-        .contact-card:nth-child(4) .icon-circle {
-            background: linear-gradient(145deg, #f1c40f, #f39c12);
-            box-shadow: 0 10px 20px rgba(243, 156, 18, 0.3);
-        }
-        
-        .info-list {
-            width: 100%;
-            text-align: center;
-        }
-        
-        .info-item {
-            margin-bottom: 8px;
-        }
-        
-        .info-item a {
-            color: #4a89dc;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .info-item a:hover {
-            color: #2c3e50;
-        }
-        
-        .back-text {
-            margin-top: 15px;
-            font-style: italic;
-            font-size: 12px;
-            color: #999;
-        }
-        
-        @media (max-width: 768px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -462,311 +345,57 @@
                                 <p>Near BPC college old building</p>
                             </div>
                             <div class="info-item">
-                                <a href="https://maps.google.com/?q=27.014523,84.881982" target="_blank">View on Map</a>
+                                <a href="https://www.google.com/maps/place/27%C2%B000'52.7%22N+84%C2%B053'03.0%22E/@27.0146427,84.8815956,17z/data=!3m1!4b1!4m4!3m3!8m2!3d27.0146427!4d84.8841705?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D" target="_blank">View on Map</a>
                             </div>
                         </div>
                         <p class="back-text">Flip back to see icon</p>
                     </div>
                 </div>
-            </div>
-
-            <div class="contact-container">
-                <!-- Modified contact form HTML -->
-<form id="contactForm">
-  <div class="row">
-    <div class="col-md-6 form-group">
-      <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-    </div>
-    <div class="col-md-6 form-group mt-3 mt-md-0">
-      <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-    </div>
-  </div>
-  <div class="form-group mt-3">
-    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
-  </div>
-  <div class="form-group mt-3">
-    <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-  </div>
-  <div class="text-center">
-    <button type="submit">Send Message</button>
-  </div>
-</form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="location" class="location">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Location</h2>
-                <p>Find Us Here</p>
-            </div>
-            <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3553.9778020059376!2d84.88198237586967!3d27.014523055909196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjfCsDAwJzUyLjciTiA4NMKwNTMnMDMuMCJF!5e0!3m2!1sen!2snp!4v1710927516578!5m2!1sen!2snp" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <style>
-  /* Reset and base styles */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-  }
-
-  /* Footer styles */
-  .footer {
-    background-color: #f8f9fa;
-    padding: 2rem 0;
-    border-top: 1px solid #e9ecef;
-  }
-
-  .container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
-
-  .footer-main {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 2rem;
-  }
-
-  .footer-brand {
-    flex-basis: 100%;
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-
-  .footer-brand h2 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-
-  .footer-brand span {
-    color: #0066cc;
-  }
-
-  .footer-brand p {
-    color: #6c757d;
-  }
-
-  .footer-sections {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    width: 100%;
-  }
-
-  .footer-section {
-    flex: 1;
-    min-width: 200px;
-    margin: 0 10px 20px;
-    text-align: center;
-  }
-
-  .footer-section h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: #343a40;
-    position: relative;
-    display: inline-block;
-    padding-bottom: 0.5rem;
-  }
-
-  .footer-section h3:after {
-    content: '';
-    position: absolute;
-    left: 25%;
-    bottom: 0;
-    width: 50%;
-    height: 2px;
-    background-color: #0066cc;
-  }
-
-  .footer-links ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  .footer-links a {
-    text-decoration: none;
-    color: #6c757d;
-    transition: all 0.3s ease;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-  }
-
-  .footer-links a:hover {
-    color: #0066cc;
-    background-color: rgba(0, 102, 204, 0.1);
-  }
-
-  .contact-info p {
-    margin-bottom: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .contact-info i {
-    color: #0066cc;
-    margin-right: 0.5rem;
-  }
-
-  .contact-info .label {
-    font-weight: 600;
-    margin-right: 0.25rem;
-  }
-
-  .social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .social-icons a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    color: white;
-    text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .social-icons .facebook {
-    background-color: #3b5998;
-  }
-
-  .social-icons .whatsapp {
-    background-color: #25d366;
-  }
-
-  .social-icons .viber {
-    background-color: #7360f2;
-  }
-
-  .social-icons a:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .services-note {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .services-note p {
-    margin-bottom: 0.5rem;
-    display: flex;
-    align-items: center;
-  }
-
-  .services-note i {
-    color: #0066cc;
-    margin-right: 0.5rem;
-  }
-
-  .copyright {
-    padding-top: 1.5rem;
-    border-top: 1px solid #e9ecef;
-    text-align: center;
-    color: #6c757d;
-    font-size: 0.9rem;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .footer-sections {
-      flex-direction: column;
-    }
-    
-    .footer-section {
-      margin-bottom: 2rem;
-    }
-    
-    .footer-links ul {
-      flex-direction: column;
-    }
-  }
-</style>
-
-<footer class="footer">
-  <div class="container">
-    <div class="footer-main">
-      <!-- Logo and Tagline -->
-      <div class="footer-brand">
-        <h2>Parsa<span>Job Centre</span></h2>
-        <p>Your Trusted Recruitment Partner</p>
-      </div>
-      
-      <div class="footer-sections">
-        <!-- Quick Links -->
-        <div class="footer-section footer-links">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#jobs">Job Types</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-        
-        <!-- Contact Info -->
-        <div class="footer-section contact-info">
-          <h3>Contact Info</h3>
-          <p><i class="fas fa-user"></i> <span class="label">Contact Person:</span> Bharat Bhushan Pandey</p>
-          <p><i class="fas fa-phone"></i> <span>9865313388, 9817213384</span></p>
-          <p><i class="fas fa-envelope"></i> <span>parsajobcenter4u@gmail.com</span></p>
-          <p><i class="fas fa-envelope"></i> <span>bharatbhushanp8@gmail.com</span></p>
-          <p><i class="fas fa-map-marker-alt"></i> <span>Panitanki, Birgunj-8, Parsa (Nepal)</span></p>
-        </div>
-        
-        <!-- Social & Services -->
-        <div class="footer-section">
-          <h3>Follow Us</h3>
-          <div class="social-icons">
-            <a href="#" class="facebook"><i class="fab fa-facebook"></i></a>
-            <a href="https://wa.me/9865313388" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" class="viber"><i class="fab fa-viber"></i></a>
+                   
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-main">
+          <!-- Logo and Tagline -->
+          <div class="footer-brand">
+            <h2>Parsa<span>Job Centre</span></h2>
+            <p>Your Trusted Recruitment Partner</p>
           </div>
-          <div class="services-note">
-            <p><i class="fas fa-briefcase"></i> <span class="label">Services:</span> Job & HR Solutions</p>
-            <p><i class="fas fa-info-circle"></i> <span class="label">Note:</span> Contact us for any type of Job & HR solution.</p>
+          
+          <div class="footer-sections">
+                       
+            <!-- Contact Info -->
+            <div class="footer-section contact-info">
+              <h3>Contact Info</h3>
+              <p><i class="fas fa-user"></i> <span class="label">Contact Person:</span> Bharat Bhushan Pandey</p>
+              <p><i class="fas fa-phone"></i> <span>9865313388, 9817213384</span></p>
+              <p><i class="fas fa-envelope"></i> <span>parsajobcenter4u@gmail.com</span></p>
+              <p><i class="fas fa-envelope"></i> <span>bharatbhushanp8@gmail.com</span></p>
+              <p><i class="fas fa-map-marker-alt"></i> <span>Panitanki, Birgunj-8, Parsa (Nepal)</span></p>
+            </div>
+            
+            <!-- Social & Services -->
+            <div class="footer-section">
+              <h3>Follow Us</h3>
+              <div class="social-icons">
+                <a href="#" class="facebook"><i class="fab fa-facebook"></i></a>
+                <a href="https://wa.me/9865313388" class="whatsapp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="viber"><i class="fab fa-viber"></i></a>
+              </div>
+              <div class="services-note">
+                <p><i class="fas fa-briefcase"></i> <span class="label">Services:</span> Job & HR Solutions</p>
+                <p><i class="fas fa-info-circle"></i> <span class="label">Note:</span> Contact us for any type of Job & HR solution.</p>
+              </div>
+            </div>
           </div>
         </div>
+        
+        <div class="copyright">
+          <p>© 2025 Parsa Job Centre. All rights reserved.</p>
+          <p>Licensed by Government of Nepal. All Rights Reserved.</p>
+          <p>Designed by <a href="https://msr-portfolio.vercel.app/" target="_blank"><i class="fas fa-code"></i> MSR</a></p>
+        </div>
       </div>
-    </div>
-    
-    <div class="copyright">
-      <p>© 2025 Parsa Job Centre. All rights reserved.</p>
-      <p>Licensed by Government of Nepal. All Rights Reserved.</p>
-      <p>Designed by <a href="https://msr-portfolio.vercel.app/" target="_blank"><i class="fas fa-code"></i> MSR</a></p>
-    </div>
-  </div>
-</footer>
+    </footer>
     
     <div class="whatsapp-button">
         <a href="https://wa.me/9865313388" target="_blank">
