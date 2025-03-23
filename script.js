@@ -1,10 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile Menu Enhancement
+    // Mobile Menu Enhancement - IMPROVED FOR BETTER RESPONSIVENESS
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
     
     if(mobileMenuBtn && navLinks) {
-        mobileMenuBtn.addEventListener('click', function() {
+        // Improved touch target size for mobile
+        mobileMenuBtn.style.minWidth = '44px';
+        mobileMenuBtn.style.minHeight = '44px';
+        
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent document click from immediately closing menu
             navLinks.classList.toggle('active');
             const expanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true' || false;
             mobileMenuBtn.setAttribute('aria-expanded', !expanded);
@@ -19,14 +24,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     icon.classList.add('fa-times');
                 }
             }
+            
+            // Prevent body scrolling when menu is open
+            if (!expanded) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
         });
         
-        // Close menu when clicking on a link
+        // Close menu when clicking on a link - improved for touch devices
         const links = navLinks.querySelectorAll('a');
         links.forEach(link => {
             link.addEventListener('click', function() {
                 navLinks.classList.remove('active');
                 mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = ''; // Re-enable scrolling
                 const icon = mobileMenuBtn.querySelector('i');
                 if (icon) {
                     icon.classList.remove('fa-times');
@@ -35,18 +48,42 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Close menu when clicking outside
+        // Close menu when clicking outside - improved with passive event
         document.addEventListener('click', function(event) {
             if (!navLinks.contains(event.target) && !mobileMenuBtn.contains(event.target) && navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
                 mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = ''; // Re-enable scrolling
                 const icon = mobileMenuBtn.querySelector('i');
                 if (icon) {
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
                 }
             }
-        });
+        }, { passive: true });
+        
+        // Add swipe to close functionality for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        navLinks.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        navLinks.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            // If swiping left (for right-side menu)
+            if (touchEndX < touchStartX - 50) {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = ''; // Re-enable scrolling
+                const icon = mobileMenuBtn.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
+        }, { passive: true });
     }
     
     // Smooth scrolling for anchor links
@@ -109,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    window.addEventListener('scroll', updateActiveNavLink);
+    window.addEventListener('scroll', updateActiveNavLink, { passive: true });
     updateActiveNavLink(); // Initial call on page load
     
     // Lazy Loading enhancements with IntersectionObserver
@@ -146,9 +183,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         
-        window.addEventListener('scroll', lazyLoad);
-        window.addEventListener('resize', lazyLoad);
-        window.addEventListener('orientationchange', lazyLoad);
+        window.addEventListener('scroll', lazyLoad, { passive: true });
+        window.addEventListener('resize', lazyLoad, { passive: true });
+        window.addEventListener('orientationchange', lazyLoad, { passive: true });
         lazyLoad(); // Initial call
     }
     
@@ -201,21 +238,27 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextBtn = document.querySelector('.testimonial-next');
         const dots = document.querySelectorAll('.testimonial-dots .dot');
         
-        // Set up initial state
-        if (window.innerWidth <= 768) {
-            // For mobile: stack them
-            testimonials.forEach(testimonial => {
-                testimonial.style.transform = 'none';
-                testimonial.style.position = 'relative';
-                testimonial.style.width = '100%';
-            });
-        } else {
-            // For desktop: side by side
-            testimonials.forEach((testimonial, index) => {
-                testimonial.style.transform = `translateX(${index * 100}%)`;
-                testimonial.style.position = 'absolute';
-                testimonial.style.width = '100%';
-            });
+        // Set up initial state - IMPROVED FOR MOBILE
+        function setupSliderLayout() {
+            if (window.innerWidth <= 768) {
+                // For mobile: stack them
+                testimonials.forEach(testimonial => {
+                    testimonial.style.transform = 'none';
+                    testimonial.style.position = 'relative';
+                    testimonial.style.width = '100%';
+                    testimonial.style.opacity = '1';
+                    testimonial.style.zIndex = '1';
+                });
+            } else {
+                // For desktop: side by side
+                testimonials.forEach((testimonial, index) => {
+                    testimonial.style.transform = `translateX(${(index - currentSlide) * 100}%)`;
+                    testimonial.style.position = 'absolute';
+                    testimonial.style.width = '100%';
+                    testimonial.style.opacity = index === currentSlide ? '1' : '0.6';
+                    testimonial.style.zIndex = index === currentSlide ? '1' : '0';
+                });
+            }
         }
         
         // Update slider position
@@ -311,26 +354,18 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Handle window resize
         window.addEventListener('resize', () => {
+            setupSliderLayout();
+            
             if (window.innerWidth <= 768) {
-                // For mobile: stack them
-                testimonials.forEach(testimonial => {
-                    testimonial.style.transform = 'none';
-                    testimonial.style.position = 'relative';
-                    testimonial.style.width = '100%';
-                    testimonial.style.opacity = '1';
-                });
-                
                 clearInterval(autoSlide); // Stop auto-slide on mobile
             } else {
-                // For desktop: side by side
-                updateSlider();
                 clearInterval(autoSlide);
                 startAutoSlide();
             }
-        });
+        }, { passive: true });
         
         // Initial setup
-        updateSlider();
+        setupSliderLayout();
     }
     
     // Form validation
@@ -557,56 +592,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('theme', 'light');
             }
         });
-    }
-    
-    // Nepali date and time in header
-    const nepaliClockElement = document.getElementById('nepali-clock');
-    const nepaliDateElement = document.getElementById('nepali-date');
-    
-    if (nepaliClockElement || nepaliDateElement) {
-        // Update Nepali time
-        function updateNepaliClock() {
-            const now = new Date();
-            const options = { 
-                hour: '2-digit', 
-                minute: '2-digit', 
-                second: '2-digit',
-                hour12: true
-            };
-            const timeString = now.toLocaleTimeString('en-US', options);
-            
-            if (nepaliClockElement) {
-                nepaliClockElement.textContent = timeString;
-            }
-        }
-        
-        // Update Nepali date
-        function updateNepaliDate() {
-            const now = new Date();
-            // Simulating Nepali date for display purposes
-            // In production, you'd use a proper Nepali date converter library
-            const options = { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric',
-                weekday: 'long'
-            };
-            const dateString = now.toLocaleDateString('ne-NP', options);
-            
-            if (nepaliDateElement) {
-                nepaliDateElement.textContent = dateString;
-            }
-        }
-        
-        // Initial calls
-        updateNepaliClock();
-        updateNepaliDate();
-        
-        // Update clock every second
-        setInterval(updateNepaliClock, 1000);
-        
-        // Update date once per day
-        setInterval(updateNepaliDate, 86400000);
     }
     
     // Button hover effects and touch feedback
