@@ -19,15 +19,16 @@
     <header class="main-header">
     <div class="header-container">
         <div class="brand-identity">
-            <img src="/api/placeholder/48/48" alt="ParsaJobs Logo" class="brand-logo" />
-            <h1 class="brand-name">Parsa<span class="brand-highlight">Jobs</span></h1>
+            <img src="logo1.jpg" alt="ParsaJobs Logo" class="brand-logo" />
+            <h1 class="brand-name">Parsa<span class="brand-highlight">Job Centre</span></h1>
         </div>
-        <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false" id="menu-toggle">
-            <i class="fas fa-bars menu-icon"></i>
-            <i class="fas fa-times close-icon"></i>
-        </button>
-        <div class="nav-overlay" id="nav-overlay"></div>
         <nav class="main-navigation">
+            <!-- Improved mobile menu with animation classes -->
+            <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false" id="menu-toggle">
+                <i class="fas fa-bars menu-icon"></i>
+                <i class="fas fa-times close-icon"></i>
+            </button>
+            <div class="nav-overlay" id="nav-overlay"></div>
             <ul class="nav-menu" id="main-nav">
                 <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
                 <li class="nav-item"><a href="#about" class="nav-link">About Us</a></li>
@@ -40,48 +41,25 @@
     </div>
 </header>
 
-<!-- Hero Section -->
-<section class="hero-section" id="home">
-    <div class="hero-content">
-        <h2 class="hero-title">Finding The Right<br>Talent For Your<br>Business</h2>
-        <p class="hero-subtitle">Connecting all types of candidates<br>with top employers since 2014</p>
-    </div>
-</section>
-
 <style>
-/* Reset and Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #333;
-}
-
-/* Enhanced Header Styles */
+/* Enhanced Header Styles with Mobile Responsiveness */
 .main-header {
-    background-color: white;
+    background-color: #fff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
-    height: 80px;
 }
 
 .header-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0.75rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100%;
 }
 
 /* Brand Identity Styles */
@@ -92,13 +70,13 @@ body {
 }
 
 .brand-logo {
-    width: 36px;
-    height: 36px;
+    width: 48px;
+    height: 48px;
     object-fit: contain;
 }
 
 .brand-name {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 700;
     color: #333;
     margin: 0;
@@ -112,9 +90,7 @@ body {
 
 /* Navigation Styles */
 .main-navigation {
-    height: 100%;
-    display: flex;
-    align-items: center;
+    position: relative;
 }
 
 .nav-menu {
@@ -124,7 +100,6 @@ body {
     padding: 0;
     gap: 1.5rem;
     align-items: center;
-    height: 100%;
 }
 
 .nav-link {
@@ -201,71 +176,27 @@ body {
     transition: opacity 0.3s ease;
 }
 
-/* Hero Section Styles */
-.hero-section {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1024/768');
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding-top: 80px; /* Account for fixed header */
-}
-
-.hero-content {
-    color: white;
-    padding: 0 20px;
-}
-
-.hero-title {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-}
-
-.hero-subtitle {
-    font-size: 1.25rem;
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
-}
-
 /* Mobile Responsiveness */
 @media (max-width: 992px) {
     .mobile-menu-toggle {
         display: block;
     }
 
-    .main-navigation {
-        position: fixed;
-        top: 80px; /* Align with header height */
-        left: 0;
-        width: 100%;
-        height: calc(100vh - 80px);
-        background-color: transparent;
-        z-index: 997;
-        pointer-events: none;
-    }
-
     .nav-menu {
         position: fixed;
-        top: 80px;
+        top: 0;
         right: -280px;
         width: 280px;
-        height: calc(100vh - 80px);
+        height: 100vh;
         background-color: white;
         flex-direction: column;
         align-items: flex-start;
-        padding: 2rem;
-        gap: 1.5rem;
+        padding: 5rem 2rem 2rem;
+        gap: 2rem;
         z-index: 999;
         transition: right 0.3s ease-in-out;
         box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
         overflow-y: auto;
-        pointer-events: auto;
     }
 
     .nav-item {
@@ -294,7 +225,6 @@ body {
     body.menu-open .nav-overlay {
         display: block;
         opacity: 1;
-        pointer-events: auto;
     }
 
     body.menu-open .menu-icon {
@@ -304,69 +234,20 @@ body {
     body.menu-open .close-icon {
         display: block;
     }
-
-    /* Hero section mobile adjustments */
-    .hero-title {
-        font-size: 2.25rem; 
-        margin-bottom: 1rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1rem;
-    }
 }
 
 @media (max-width: 576px) {
-    .main-header {
-        height: 70px;
-    }
-
     .header-container {
-        padding: 0 1rem;
+        padding: 0.5rem 1rem;
     }
 
     .brand-name {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
     }
 
     .brand-logo {
-        width: 28px;
-        height: 28px;
-    }
-
-    .mobile-menu-toggle {
-        font-size: 1.25rem;
-        padding: 0.25rem;
-    }
-
-    .nav-menu {
-        top: 70px;
-        height: calc(100vh - 70px);
-        padding: 1.5rem;
-    }
-
-    .main-navigation {
-        top: 70px;
-        height: calc(100vh - 70px);
-    }
-
-    .hero-section {
-        padding-top: 70px; /* Account for smaller fixed header */
-        padding-left: 1rem;
-        padding-right: 1rem;
-        height: 100vh;
-        justify-content: center;
-    }
-
-    .hero-title {
-        font-size: 2rem;
-        line-height: 1.3;
-        margin-bottom: 1rem;
-    }
-
-    .hero-subtitle {
-        font-size: 0.9rem;
-        line-height: 1.5;
+        width: 40px;
+        height: 40px;
     }
 }
 </style>
