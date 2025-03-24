@@ -1,71 +1,108 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const body = document.body;
-    const scrollContainer = document.createElement('div');
-    const scrollbar = document.createElement('div');
-    const scrollThumb = document.createElement('div');
-
-    // Setup scroll container
-    scrollContainer.className = 'virtual-scroll-container';
-    scrollbar.className = 'virtual-scrollbar';
-    scrollThumb.className = 'virtual-scrollbar-thumb';
-
-    scrollbar.appendChild(scrollThumb);
-    body.appendChild(scrollbar);
-
-    // Calculate and update thumb height
-    function updateThumbHeight() {
-        const viewportHeight = window.innerHeight;
-        const contentHeight = document.documentElement.scrollHeight;
-        const scrollPercentage = viewportHeight / contentHeight;
-        const thumbHeight = Math.max(viewportHeight * scrollPercentage, 30);
-        scrollThumb.style.height = `${thumbHeight}px`;
-    }
-
-    // Update thumb position
-    function updateThumbPosition() {
-        const scrollPercentage = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-        const thumbPosition = scrollPercentage * (scrollbar.clientHeight - scrollThumb.clientHeight);
-        scrollThumb.style.transform = `translateY(${thumbPosition}px)`;
-    }
-
-    // Handle scroll events
-    window.addEventListener('scroll', () => {
-        updateThumbPosition();
-    });
-
-    // Handle resize events
-    window.addEventListener('resize', () => {
-        updateThumbHeight();
-        updateThumbPosition();
-    });
-
-    // Initialize
-    updateThumbHeight();
-    updateThumbPosition();
-
-    // Handle thumb drag
-    let isDragging = false;
-    let startY = 0;
-    let scrollStartY = 0;
-
-    scrollThumb.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        startY = e.clientY - scrollThumb.offsetTop;
-        scrollStartY = window.scrollY;
-        document.body.style.userSelect = 'none';
-    });
-
-    document.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-
-        const y = e.clientY - startY;
-        const percentage = y / (scrollbar.clientHeight - scrollThumb.clientHeight);
-        const scrollY = percentage * (document.documentElement.scrollHeight - window.innerHeight);
-        window.scrollTo(0, scrollY);
-    });
-
-    document.addEventListener('mouseup', () => {
-        isDragging = false;
-        document.body.style.userSelect = '';
-    });
-}));
+  // Create elements only once
+  const scrollbar = document.createElement('div');
+  const scrollThumb = document.createElement('div');
+  
+  // Setup with minimal DOM operations
+  scrollbar.className = 'virtual-scrollbar';
+  scrollThumb.className = 'virtual-scrollbar-thumb';
+  scrollbar.appendChild(scrollThumb);
+  document.body.appendChild(scrollbar);
+  
+  // Track drag state
+  let isDragging = false;
+  let startY = 0;
+  
+  // Optimize calculations with cached values
+  let scrollbarHeight = scrollbar.clientHeight;
+  let viewportHeight = window.innerHeight;
+  let contentHeight = document.documentElement.scrollHeight;
+  
+  // Combined update function to reduce calculations
+  function updateThumb() {
+    // Calculate thumb dimensions
+    const scrollPercentage = viewportHeight / contentHeight;
+    const thumbHeight = Math.max(viewportHeight * scrollPercentage, 30);
+    scrollThumb.style.height = `${thumbHeight}px`;
+    
+    // Position the thumb
+    const scrollRatio = window.scrollY / (contentHeight - viewportHeight);
+    const thumbPosition = scrollRatio * (scrollbarHeight - thumbHeight);
+    
+    // Use transform for better performance
+    scrollThumb.style.transform = `translateY(${thumbPosition}px)`;
+  }
+  
+  // Update cached dimensions when needed
+  function updateDimensions() {
+    scrollbarHeight = scrollbar.clientHeight;
+    viewportHeight = window.innerHeight;
+    contentHeight = document.documentElement.scrollHeight;
+    updateThumb();
+  }
+  
+  // Touch event handlers for mobile
+  scrollThumb.addEventListener('touchstart', (e) => {
+    isDragging = true;
+    startY = e.touches[0].clientY;
+    e.preventDefault();
+    document.body.style.overflow = 'hidden'; // Prevent page scroll during drag
+  });
+  
+  document.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    
+    const touchY = e.touches[0].clientY;
+    const deltaY = touchY - startY;
+    startY = touchY;
+    
+    const scrollRatio = deltaY / (scrollbarHeight - scrollThumb.clientHeight);
+    const scrollAmount = scrollRatio * contentHeight;
+    
+    window.scrollBy(0, scrollAmount);
+    e.preventDefault();
+  });
+  
+  document.addEventListener('touchend', () => {
+    isDragging = false;
+    document.body.style.overflow = ''; // Restore scrolling
+  });
+  
+  // Desktop event handlers (throttled)
+  scrollThumb.addEventListener('mousedown', (e) => {
+    isDragging = true;
+    startY = e.clientY;
+    document.body.style.userSelect = 'none';
+    e.preventDefault();
+  });
+  
+  // Use passive listeners where possible for better performance
+  window.addEventListener('scroll', updateThumb, { passive: true });
+  
+  // Throttle resize events
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(updateDimensions, 100);
+  });
+  
+  document.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    
+    const deltaY = e.clientY - startY;
+    startY = e.clientY;
+    
+    const scrollRatio = deltaY / (scrollbarHeight - scrollThumb.clientHeight);
+    const scrollAmount = scrollRatio * contentHeight;
+    
+    window.scrollBy(0, scrollAmount);
+  });
+  
+  document.addEventListener('mouseup', () => {
+    isDragging = false;
+    document.body.style.userSelect = '';
+  });
+  
+  // Initialize once on load
+  updateDimensions();
+});
