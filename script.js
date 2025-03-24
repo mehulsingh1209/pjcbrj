@@ -177,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Testimonial slider - mobile optimized
+    // Testimonial slider - mobile optimized with NO DOT NAVIGATION
     const testimonialSlider = document.querySelector('.testimonials');
     
     if (testimonialSlider) {
@@ -206,24 +206,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 navDiv.appendChild(nextBtn);
                 testimonialSlider.parentNode.appendChild(navDiv);
                 
-                // Add dots for navigation
-                const dotsDiv = document.createElement('div');
-                dotsDiv.className = 'testimonial-dots';
-                
-                for (let i = 0; i < slideCount; i++) {
-                    const dot = document.createElement('button');
-                    dot.className = i === 0 ? 'dot active' : 'dot';
-                    dot.setAttribute('aria-label', `Go to testimonial ${i + 1}`);
-                    dot.dataset.slide = i;
-                    dotsDiv.appendChild(dot);
-                }
-                
-                testimonialSlider.parentNode.appendChild(dotsDiv);
+                // DOT NAVIGATION REMOVED
             }
             
             const prevBtn = document.querySelector('.testimonial-prev');
             const nextBtn = document.querySelector('.testimonial-next');
-            const dots = document.querySelectorAll('.testimonial-dots .dot');
             
             // Simplified layout setup
             function setupSlider() {
@@ -244,11 +231,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         testimonial.style.opacity = index === currentSlide ? '1' : '0.6';
                         testimonial.style.zIndex = index === currentSlide ? '1' : '0';
                     }
-                });
-                
-                // Update dots
-                dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentSlide);
                 });
                 
                 // Handle auto-slide based on device
@@ -309,13 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     goToSlide((currentSlide + 1) % slideCount);
                 });
             }
-            
-            // Dot navigation
-            dots.forEach(dot => {
-                dot.addEventListener('click', () => {
-                    goToSlide(parseInt(dot.dataset.slide));
-                });
-            });
             
             // Pause on mouse/touch
             testimonialSlider.addEventListener('mouseenter', () => {
