@@ -528,16 +528,38 @@ section {
     transform: translateX(3px);
 }
 
+.partnership-highlight {
+    margin-top: 3rem;
+    text-align: center;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.partnership-highlight p {
+    color: var(--medium-grey);
+    font-style: italic;
+}
+
+/* Media Queries for Partnership Section */
 @media (max-width: 768px) {
     .partners-grid {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
+    
+    .partner-logo {
+        width: 100px;
+        height: 100px;
+    }
 }
 
 @media (max-width: 576px) {
-    .services-grid,
     .partners-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .partnership-highlight {
+        margin-top: 2rem;
     }
 }
 /* Success Stories Section */
