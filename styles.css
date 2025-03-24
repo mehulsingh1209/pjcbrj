@@ -402,6 +402,7 @@ section {
 .service-link:hover::after {
     width: 100%;
 }
+
 /* Job Types Section */
 .job-types {
     background-color: var(--white);
@@ -460,8 +461,6 @@ section {
     color: var(--medium-grey);
     font-size: 0.9rem;
 }
-
-/* Partnership Section */
 
 /* Partnership Section */
 .partnership {
@@ -562,70 +561,46 @@ section {
     font-style: italic;
 }
 
-/* Enhanced Media Queries for Partnership Section */
-@media (max-width: 992px) {
-    .partners-grid {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 1.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .partners-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.25rem;
-    }
-    
-    .partner-logo {
-        width: 100px;
-        height: 100px;
-    }
-    
-    .partner-card {
-        padding: 1.5rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .partners-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        max-width: 400px; /* Limit width on very small screens */
-        margin: 0 auto;
-    }
-    
-    .partnership-highlight {
-        margin-top: 2rem;
-    }
-    
-    .partner-card {
-        padding: 1.25rem;
-    }
-    
-    .partner-logo {
-        width: 90px;
-        height: 90px;
-        margin-bottom: 1rem;
-    }
-}
-
-@media (max-width: 360px) {
-    .partner-card h3 {
-        font-size: 1.1rem;
-    }
-    
-    .partner-card p {
-        font-size: 0.85rem;
-    }
-}
 /* Success Stories Section */
 .success-stories {
     background-color: var(--white);
+    text-align: center;
+    padding: 80px 0;
+}
+
+.success-stories h2 {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+}
+
+.success-stories h2::after {
+    content: '';
+    position: absolute;
+    width: 70px;
+    height: 3px;
+    background-color: var(--primary-color);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.success-stories .subtitle {
+    color: var(--medium-grey);
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
 }
 
 .testimonials {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
 .testimonial {
@@ -907,6 +882,52 @@ section {
     transform: scale(1.1);
 }
 
+/* Enhanced Media Queries for Partnership Section */
+@media (max-width: 992px) {
+    .partners-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .partners-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.25rem;
+    }
+    
+    .partner-logo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .partner-card {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .partners-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        max-width: 400px; /* Limit width on very small screens */
+        margin: 0 auto;
+    }
+    
+    .partnership-highlight {
+        margin-top: 2rem;
+    }
+    
+    .partner-card {
+        padding: 1.25rem;
+    }
+    
+    .partner-logo {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 1rem;
+    }
+}
+
 /* Transitions */
 .fade-in {
     opacity: 0;
@@ -990,6 +1011,16 @@ section {
     
     .contact-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 360px) {
+    .partner-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .partner-card p {
+        font-size: 0.85rem;
     }
 }
 
