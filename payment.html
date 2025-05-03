@@ -544,6 +544,7 @@
                         <i class="fas fa-upload"></i> Add file
                     </label>
                     <p class="upload-info">Upload 1 supported file. Max 10 MB.</p>
+                    <div id="passport-photo-preview" style="margin-top: 10px;"></div>
                 </div>
             </div>
 
@@ -676,6 +677,7 @@
                         <i class="fas fa-upload"></i> Add file
                     </label>
                     <p class="upload-info">Upload 1 supported file. Max 10 MB.</p>
+                    <div id="signature-preview" style="margin-top: 10px;"></div>
                 </div>
             </div>
 
@@ -718,6 +720,7 @@
                             <i class="fas fa-upload"></i> Upload payment proof
                         </label>
                         <p class="upload-info">Upload screenshot of your payment receipt/confirmation. Max 10 MB.</p>
+                        <div id="payment-screenshot-preview" style="margin-top: 10px;"></div>
                     </div>
                     
                     <div class="payment-amount">
@@ -756,6 +759,43 @@
     <script>
         // Wait for the DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function() {
+            // Image preview functionality
+            document.getElementById('passport-photo').addEventListener('change', function(e) {
+                const preview = document.getElementById('passport-photo-preview');
+                preview.innerHTML = '';
+                if (this.files && this.files[0]) {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(this.files[0]);
+                    img.style.maxWidth = '150px';
+                    img.style.maxHeight = '150px';
+                    preview.appendChild(img);
+                }
+            });
+            
+            document.getElementById('signature').addEventListener('change', function(e) {
+                const preview = document.getElementById('signature-preview');
+                preview.innerHTML = '';
+                if (this.files && this.files[0]) {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(this.files[0]);
+                    img.style.maxWidth = '150px';
+                    img.style.maxHeight = '150px';
+                    preview.appendChild(img);
+                }
+            });
+            
+            document.getElementById('payment-screenshot').addEventListener('change', function(e) {
+                const preview = document.getElementById('payment-screenshot-preview');
+                preview.innerHTML = '';
+                if (this.files && this.files[0]) {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(this.files[0]);
+                    img.style.maxWidth = '150px';
+                    img.style.maxHeight = '150px';
+                    preview.appendChild(img);
+                }
+            });
+
             // Show/hide education details based on selection
             document.getElementById('education').addEventListener('change', function() {
                 const educationDetails = document.getElementById('education-details-section');
@@ -786,7 +826,7 @@
             });
 
             // Form validation and submission logic
-            document.getElementById('job-application-form').addEventListener('submit', function(e) {
+            document.getElementById('job-application-form').addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
                 // Perform validation
@@ -795,7 +835,7 @@
                 }
                 
                 // Collect and format form data for WhatsApp
-                const whatsappMessage = formatDataForWhatsApp();
+                const whatsappMessage = await formatDataForWhatsApp();
                 
                 // Send to WhatsApp
                 sendToWhatsApp(whatsappMessage);
@@ -870,7 +910,7 @@
             }
             
             // Function to format data for WhatsApp
-            function formatDataForWhatsApp() {
+            async function formatDataForWhatsApp() {
                 const formData = new FormData(document.getElementById('job-application-form'));
                 let message = "🌟 *NEW JOB APPLICATION* 🌟\n\n";
                 
@@ -941,7 +981,13 @@
                 const referenceNumber = generateReferenceNumber();
                 message += `📌 Reference No: *${referenceNumber}*\n\n`;
                 
-                message += "✅ *Terms & Conditions Accepted*";
+                message += "✅ *Terms & Conditions Accepted*\n\n";
+                
+                // Add note about attached images
+                message += "📎 *Attached Images:*\n";
+                message += "• Passport Photo\n";
+                message += "• Signature\n";
+                message += "• Payment Proof\n\n";
                 
                 return message;
             }
@@ -950,10 +996,47 @@
             function sendToWhatsApp(message) {
                 const phoneNumber = "9779840239391"; // The number to receive applications
                 const encodedMessage = encodeURIComponent(message);
-                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
                 
-                // Open WhatsApp in a new tab
-                window.open(whatsappUrl, '_blank');
+                // Create a temporary form to submit with the files
+                const tempForm = document.createElement('form');
+                tempForm.method = 'POST';
+                tempForm.action = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+                tempForm.target = '_blank';
+                tempForm.style.display = 'none';
+                
+                // Add files to the form
+                const passportPhoto = document.getElementById('passport-photo').files[0];
+                const signature = document.getElementById('signature').files[0];
+                const paymentScreenshot = document.getElementById('payment-screenshot').files[0];
+                
+                if (passportPhoto) {
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.name = 'passport-photo';
+                    input.files = [passportPhoto];
+                    tempForm.appendChild(input);
+                }
+                
+                if (signature) {
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.name = 'signature';
+                    input.files = [signature];
+                    tempForm.appendChild(input);
+                }
+                
+                if (paymentScreenshot) {
+                    const input = document.createElement('input');
+                    input.type = 'file';
+                    input.name = 'payment-screenshot';
+                    input.files = [paymentScreenshot];
+                    tempForm.appendChild(input);
+                }
+                
+                // Add the form to the document and submit it
+                document.body.appendChild(tempForm);
+                tempForm.submit();
+                document.body.removeChild(tempForm);
             }
             
             // Helper functions
@@ -1071,6 +1154,11 @@
                 document.getElementById('family-details-section').style.display = 'none';
                 document.getElementById('family-member-details').style.display = 'none';
                 document.getElementById('nominee-details').style.display = 'none';
+                
+                // Clear image previews
+                document.getElementById('passport-photo-preview').innerHTML = '';
+                document.getElementById('signature-preview').innerHTML = '';
+                document.getElementById('payment-screenshot-preview').innerHTML = '';
             }
             
             // Clear form button functionality
