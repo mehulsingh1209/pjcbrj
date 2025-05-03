@@ -994,17 +994,33 @@
             
             // Function to send data to WhatsApp
             function sendToWhatsApp(message) {
-                const phoneNumber = "9779840239391"; // The number to receive applications
+                // WhatsApp numbers to send to
+                const numbers = ["9779865313388", "9779809108519"];
+                
+                // Encode the message for URL
                 const encodedMessage = encodeURIComponent(message);
                 
                 // Create a temporary form to submit with the files
                 const tempForm = document.createElement('form');
                 tempForm.method = 'POST';
-                tempForm.action = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-                tempForm.target = '_blank';
                 tempForm.style.display = 'none';
                 
-                // Add files to the form
+                // Send to each number
+                numbers.forEach((number, index) => {
+                    // For the first number, open in a new tab
+                    if (index === 0) {
+                        window.open(`https://wa.me/${number}?text=${encodedMessage}`, '_blank');
+                    } 
+                    // For subsequent numbers, use hidden iframes (note: may be blocked by popup blockers)
+                    else {
+                        const iframe = document.createElement('iframe');
+                        iframe.style.display = 'none';
+                        iframe.src = `https://wa.me/${number}?text=${encodedMessage}`;
+                        document.body.appendChild(iframe);
+                    }
+                });
+                
+                // Add files to the form if needed (though WhatsApp web doesn't support file uploads via URL)
                 const passportPhoto = document.getElementById('passport-photo').files[0];
                 const signature = document.getElementById('signature').files[0];
                 const paymentScreenshot = document.getElementById('payment-screenshot').files[0];
