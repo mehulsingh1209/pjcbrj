@@ -307,6 +307,181 @@
                 flex-direction: column;
             }
         }
+
+        /* Enhanced Desktop Styles */
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--form-bg-color);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section {
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            margin-bottom: 25px;
+        }
+
+        .form-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-control {
+            transition: all 0.3s ease;
+        }
+
+        .form-control:hover {
+            border-color: var(--primary-color);
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+        }
+
+        .btn {
+            transition: all 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-primary {
+            padding: 12px 30px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 108, 247, 0.2);
+        }
+
+        .upload-btn {
+            transition: all 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            background: var(--hover-color);
+            transform: translateY(-1px);
+        }
+
+        /* Enhanced Mobile Styles */
+        @media screen and (max-width: 768px) {
+            .container {
+                margin: 0;
+                padding: 15px;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .form-section {
+                padding: 20px;
+                margin-bottom: 15px;
+            }
+
+            .form-label {
+                font-size: 15px;
+            }
+
+            .form-control {
+                padding: 10px 14px;
+                font-size: 15px;
+            }
+
+            /* Improve touch targets for mobile */
+            .radio-option, 
+            .upload-btn,
+            .btn {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+
+            /* Better spacing for stacked buttons */
+            .button-group {
+                gap: 15px;
+            }
+
+            /* Enhanced mobile form layout */
+            [style*="display: flex"] {
+                flex-direction: column;
+            }
+
+            [style*="flex: 1"] {
+                flex: none;
+            }
+
+            /* Improved mobile QR code display */
+            .payment-section img {
+                width: 250px;
+                height: 250px;
+                object-fit: contain;
+            }
+
+            /* Better mobile form groups spacing */
+            .form-group {
+                margin-bottom: 25px;
+            }
+        }
+
+        /* Additional Enhancements for Both */
+        .header {
+            text-align: center;
+            padding: 20px 0 30px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .required-notice {
+            background: var(--hover-color);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        /* Payment Section Enhancements */
+        .payment-section {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+        }
+
+        .payment-amount {
+            background: var(--hover-color);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        /* Success Message Enhancement */
+        .success-message {
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translate(-50%, -40%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, -50%);
+                opacity: 1;
+            }
+        }
+
+        .shake-animation {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
+            40%, 60% { transform: translate3d(3px, 0, 0); }
+        }
     </style>
 </head>
 <body>
@@ -579,315 +754,336 @@
     </div>
 
     <script>
-        // Show/hide education details based on selection
-        document.getElementById('education').addEventListener('change', function() {
-            const educationDetails = document.getElementById('education-details-section');
-            if (this.value && this.value !== '') {
-                educationDetails.style.display = 'block';
-            } else {
-                educationDetails.style.display = 'none';
-            }
-        });
-        
-        // Show/hide family details based on selection
-        document.querySelectorAll('input[name="family-info"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                const familyDetailsSection = document.getElementById('family-details-section');
-                const memberDetails = document.getElementById('family-member-details');
-                const nomineeDetails = document.getElementById('nominee-details');
-                
-                familyDetailsSection.style.display = 'block';
-                
-                if (this.value === 'member') {
-                    memberDetails.style.display = 'block';
-                    nomineeDetails.style.display = 'none';
-                } else if (this.value === 'nominee') {
-                    memberDetails.style.display = 'none';
-                    nomineeDetails.style.display = 'block';
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show/hide education details based on selection
+            document.getElementById('education').addEventListener('change', function() {
+                const educationDetails = document.getElementById('education-details-section');
+                if (this.value && this.value !== '') {
+                    educationDetails.style.display = 'block';
+                } else {
+                    educationDetails.style.display = 'none';
                 }
             });
-        });
-
-        // Fix the form validation and submission logic
-        document.getElementById('job-application-form').addEventListener('submit', function(e) {
-            e.preventDefault();
             
-            // Basic validation
-            const required = document.querySelectorAll('[required]');
-            let valid = true;
-            
-            required.forEach(field => {
-                if (field.type === 'file') {
-                    if (!field.files || field.files.length === 0) {
-                        valid = false;
-                        field.nextElementSibling.style.borderColor = 'var(--error-color)';
-                    } else {
-                        field.nextElementSibling.style.borderColor = 'var(--border-color)';
+            // Show/hide family details based on selection
+            document.querySelectorAll('input[name="family-info"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const familyDetailsSection = document.getElementById('family-details-section');
+                    const memberDetails = document.getElementById('family-member-details');
+                    const nomineeDetails = document.getElementById('nominee-details');
+                    
+                    familyDetailsSection.style.display = 'block';
+                    
+                    if (this.value === 'member') {
+                        memberDetails.style.display = 'block';
+                        nomineeDetails.style.display = 'none';
+                    } else if (this.value === 'nominee') {
+                        memberDetails.style.display = 'none';
+                        nomineeDetails.style.display = 'block';
                     }
-                } else if (field.type === 'radio' || field.type === 'checkbox') {
+                });
+            });
+
+            // Form validation and submission logic
+            document.getElementById('job-application-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Perform validation
+                if (!validateForm()) {
                     return;
-                } else if (!field.value.trim()) {  // Added trim() to check for empty spaces
-                    valid = false;
-                    field.style.borderColor = 'var(--error-color)';
+                }
+                
+                // Collect and format form data for WhatsApp
+                const whatsappMessage = formatDataForWhatsApp();
+                
+                // Send to WhatsApp
+                sendToWhatsApp(whatsappMessage);
+                
+                // Show success message
+                showSuccessMessage();
+                
+                // Reset the form
+                this.reset();
+                resetFormDisplay();
+            });
+            
+            // Function to validate all form fields
+            function validateForm() {
+                let isValid = true;
+                const errorElements = [];
+                
+                // Check all required fields
+                document.querySelectorAll('[required]').forEach(field => {
+                    // Reset styles first
+                    resetFieldError(field);
+                    
+                    if (field.type === 'file') {
+                        if (!field.files || field.files.length === 0) {
+                            isValid = false;
+                            errorElements.push(field.nextElementSibling);
+                            highlightError(field.nextElementSibling);
+                        }
+                    } else if (field.type === 'checkbox') {
+                        if (!field.checked) {
+                            isValid = false;
+                            errorElements.push(field.parentElement);
+                            field.parentElement.style.color = 'var(--error-color)';
+                        }
+                    } else if (field.type === 'radio') {
+                        // Skip individual radio buttons - we'll check the groups separately
+                        return;
+                    } else if (!field.value.trim()) {
+                        isValid = false;
+                        errorElements.push(field);
+                        highlightError(field);
+                    }
+                });
+                
+                // Check radio button groups
+                const radioGroups = {
+                    'gender': false,
+                    'family-info': false
+                };
+                
+                Object.keys(radioGroups).forEach(name => {
+                    const group = document.querySelectorAll(`input[name="${name}"]`);
+                    const groupChecked = Array.from(group).some(radio => radio.checked);
+                    
+                    radioGroups[name] = groupChecked;
+                    const parentElement = group[0].closest('.form-group');
+                    
+                    if (!groupChecked) {
+                        isValid = false;
+                        errorElements.push(parentElement);
+                        parentElement.style.borderColor = 'var(--error-color)';
+                    }
+                });
+                
+                // If validation fails, scroll to first error
+                if (!isValid && errorElements.length > 0) {
+                    errorElements[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    showErrorAlert('Please fill in all required fields correctly.');
+                }
+                
+                return isValid;
+            }
+            
+            // Function to format data for WhatsApp
+            function formatDataForWhatsApp() {
+                const formData = new FormData(document.getElementById('job-application-form'));
+                let message = "🌟 *NEW JOB APPLICATION* 🌟\n\n";
+                
+                // Personal Details Section
+                message += "👤 *PERSONAL DETAILS*\n";
+                message += `• Name: *${formData.get('full-name')}*\n`;
+                message += `• Date of Birth: *${formatDate(formData.get('dob'))}*\n`;
+                message += `• Citizenship No: *${formData.get('citizenship-number')}*\n`;
+                message += `• Gender: *${getSelectedRadioValue('gender')}*\n`;
+                message += `• Current Address: *${formData.get('current-address')}*\n`;
+                message += `• Permanent Address: *${formData.get('permanent-address')}*\n`;
+                message += `• Contact No: *${formData.get('contact-no')}*\n\n`;
+                
+                // Job Details Section
+                message += "💼 *JOB DETAILS*\n";
+                message += `• Position Applied For: *${formData.get('job-position')}*\n`;
+                message += `• Education Level: *${formData.get('education')}*\n`;
+                if (formData.get('education') && formData.get('education') !== '') {
+                    if (formData.get('institution-name')) {
+                        message += `• Institution: *${formData.get('institution-name')}*\n`;
+                    }
+                    if (formData.get('completion-year')) {
+                        message += `• Year of Completion: *${formData.get('completion-year')}*\n`;
+                    }
+                    if (formData.get('major-subject')) {
+                        message += `• Major Subject: *${formData.get('major-subject')}*\n`;
+                    }
+                }
+                message += `• Relation to Applicant: *${formData.get('relation')}*\n\n`;
+                
+                // Family Information Section
+                message += "👪 *FAMILY INFORMATION*\n";
+                const familyInfoType = getSelectedRadioValue('family-info');
+                message += `• Type: *${familyInfoType === 'member' ? 'Family Member' : 'Nominee'}*\n`;
+                
+                if (familyInfoType === 'member') {
+                    if (formData.get('member-name')) {
+                        message += `• Member Name: *${formData.get('member-name')}*\n`;
+                    }
+                    if (formData.get('member-age')) {
+                        message += `• Age: *${formData.get('member-age')}*\n`;
+                    }
+                    if (formData.get('member-citizenship')) {
+                        message += `• Citizenship No: *${formData.get('member-citizenship')}*\n`;
+                    }
+                } else if (familyInfoType === 'nominee') {
+                    if (formData.get('nominee-name')) {
+                        message += `• Nominee Name: *${formData.get('nominee-name')}*\n`;
+                    }
+                    if (formData.get('nominee-citizenship')) {
+                        message += `• Citizenship No: *${formData.get('nominee-citizenship')}*\n`;
+                    }
+                }
+                message += "\n";
+                
+                // Payment Details Section
+                message += "💰 *PAYMENT DETAILS*\n";
+                message += `• Method: *${formData.get('payment-method')}*\n`;
+                message += `• Transaction ID: *${formData.get('transaction-id')}*\n`;
+                message += `• Amount: *NPR 500*\n\n`;
+                
+                // Application Status
+                message += "📋 *APPLICATION STATUS*\n";
+                message += `• Status: *New Application*\n`;
+                message += `• Submitted on: *${getCurrentDateTimeFormatted()}*\n\n`;
+                
+                // Reference Number (generate a unique reference)
+                const referenceNumber = generateReferenceNumber();
+                message += `📌 Reference No: *${referenceNumber}*\n\n`;
+                
+                message += "✅ *Terms & Conditions Accepted*";
+                
+                return message;
+            }
+            
+            // Function to send data to WhatsApp
+            function sendToWhatsApp(message) {
+                const phoneNumber = "9779840239391"; // The number to receive applications
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+                
+                // Open WhatsApp in a new tab
+                window.open(whatsappUrl, '_blank');
+            }
+            
+            // Helper functions
+            function getSelectedRadioValue(name) {
+                const selected = document.querySelector(`input[name="${name}"]:checked`);
+                return selected ? selected.value : '';
+            }
+            
+            function formatDate(dateString) {
+                if (!dateString) return '';
+                const date = new Date(dateString);
+                return date.toLocaleDateString('en-NP', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            }
+            
+            function getCurrentDateTimeFormatted() {
+                const now = new Date();
+                return now.toLocaleString('en-NP', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            }
+            
+            function generateReferenceNumber() {
+                const date = new Date();
+                const datePart = `${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}${String(date.getDate()).padStart(2, '0')}`;
+                const randomPart = Math.floor(1000 + Math.random() * 9000); // 4-digit random number
+                return `PJC-${datePart}-${randomPart}`;
+            }
+            
+            function highlightError(element) {
+                element.style.borderColor = 'var(--error-color)';
+                element.classList.add('shake-animation');
+                setTimeout(() => {
+                    element.classList.remove('shake-animation');
+                }, 500);
+            }
+            
+            function resetFieldError(field) {
+                if (field.type === 'file') {
+                    field.nextElementSibling.style.borderColor = 'var(--border-color)';
+                } else if (field.type === 'checkbox' || field.type === 'radio') {
+                    field.parentElement.style.color = 'var(--text-color)';
                 } else {
                     field.style.borderColor = 'var(--border-color)';
                 }
-            });
+            }
             
-            // Check radio button groups
-            const radioGroups = {
-                'gender': false,
-                'family-info': false
-            };
+            function showErrorAlert(message) {
+                alert(message);
+            }
             
-            Object.keys(radioGroups).forEach(name => {
-                const group = document.querySelectorAll(`input[name="${name}"]`);
-                const groupChecked = Array.from(group).some(radio => radio.checked);
+            function showSuccessMessage() {
+                // Create success message overlay
+                const successOverlay = document.createElement('div');
+                successOverlay.classList.add('success-overlay');
+                successOverlay.innerHTML = `
+                    <div class="success-message">
+                        <i class="fas fa-check-circle" style="font-size: 48px; color: var(--success-color); margin-bottom: 15px;"></i>
+                        <h3>Application Submitted!</h3>
+                        <p>Your job application has been sent successfully.</p>
+                        <p>Redirecting to WhatsApp to complete submission...</p>
+                        <button class="btn btn-primary close-success">OK</button>
+                    </div>
+                `;
                 
-                radioGroups[name] = groupChecked;
-                const parentElement = group[0].closest('.form-group');
-                if (!groupChecked) {
-                    valid = false;
-                    parentElement.style.borderColor = 'var(--error-color)';
-                } else {
-                    parentElement.style.borderColor = 'var(--border-color)';
-                }
+                // Apply styles for the overlay
+                successOverlay.style.position = 'fixed';
+                successOverlay.style.top = '0';
+                successOverlay.style.left = '0';
+                successOverlay.style.width = '100%';
+                successOverlay.style.height = '100%';
+                successOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+                successOverlay.style.display = 'flex';
+                successOverlay.style.justifyContent = 'center';
+                successOverlay.style.alignItems = 'center';
+                successOverlay.style.zIndex = '1000';
+                
+                // Style for the message box
+                const successMessage = successOverlay.querySelector('.success-message');
+                successMessage.style.background = 'white';
+                successMessage.style.padding = '30px';
+                successMessage.style.borderRadius = '8px';
+                successMessage.style.textAlign = 'center';
+                successMessage.style.maxWidth = '400px';
+                successMessage.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                
+                // Add to document
+                document.body.appendChild(successOverlay);
+                
+                // Close button functionality
+                successOverlay.querySelector('.close-success').addEventListener('click', function() {
+                    successOverlay.remove();
+                });
+                
+                // Auto remove after 5 seconds
+                setTimeout(() => {
+                    if (document.body.contains(successOverlay)) {
+                        successOverlay.remove();
+                    }
+                }, 5000);
+            }
+            
+            function resetFormDisplay() {
+                // Hide education details
+                document.getElementById('education-details-section').style.display = 'none';
+                
+                // Hide family details
+                document.getElementById('family-details-section').style.display = 'none';
+                document.getElementById('family-member-details').style.display = 'none';
+                document.getElementById('nominee-details').style.display = 'none';
+            }
+            
+            // Clear form button functionality
+            document.getElementById('clear-form').addEventListener('click', function() {
+                document.getElementById('job-application-form').reset();
+                resetFormDisplay();
+                
+                // Reset any error highlights
+                document.querySelectorAll('[style*="border-color"]').forEach(element => {
+                    element.style.borderColor = 'var(--border-color)';
+                });
             });
-            
-            // Check terms agreement
-            const termsCheckbox = document.getElementById('terms-agree');
-            if (!termsCheckbox.checked) {
-                valid = false;
-                termsCheckbox.parentElement.style.color = 'var(--error-color)';
-            } else {
-                termsCheckbox.parentElement.style.color = 'var(--text-color)';
-            }
-            
-            if (valid) {
-                try {
-                    const formData = new FormData(this);
-                    let message = "🔵 *New Job Application*\n\n";
-                    message += "👤 *Personal Details*\n";
-                    message += `Name: ${formData.get('full-name')}\n`;
-                    message += `DOB: ${formData.get('dob')}\n`;
-                    message += `Citizenship: ${formData.get('citizenship-number')}\n`;
-                    message += `Current Address: ${formData.get('current-address')}\n`;
-                    message += `Permanent Address: ${formData.get('permanent-address')}\n`;
-                    message += `Contact: ${formData.get('contact-no')}\n\n`;
-                    
-                    message += "💼 *Job Details*\n";
-                    message += `Position: ${formData.get('job-position')}\n`;
-                    message += `Education: ${formData.get('education')}\n`;
-                    message += `Relation: ${formData.get('relation')}\n\n`;
-                    
-                    message += "💳 *Payment Details*\n";
-                    message += `Method: ${formData.get('payment-method')}\n`;
-                    message += `Transaction ID: ${formData.get('transaction-id')}\n`;
-                    
-                    const encodedMessage = encodeURIComponent(message);
-                    window.open(`https://wa.me/9779840239391?text=${encodedMessage}`, '_blank');
-                    
-                    alert('Application submitted! Redirecting to WhatsApp...');
-                    this.reset();
-                    
-                    // Reset all error states
-                    document.querySelectorAll('[style*="border-color"]').forEach(element => {
-                        element.style.borderColor = 'var(--border-color)';
-                    });
-                    
-                } catch (error) {
-                    console.error('Form submission error:', error);
-                    alert('An error occurred. Please try again.');
-                }
-            } else {
-                const firstError = document.querySelector('[style*="border-color: var(--error-color)"]');
-                if (firstError) {
-                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-                alert('Please fill in all required fields correctly.');
-            }
         });
-
-    // Clear form
-    document.getElementById('clear-form').addEventListener('click', function() {
-        document.getElementById('job-application-form').reset();
-    });
-</script>
+    </script>
 </body>
 </html>
-<style>
-    :root {
-        --primary-color: #4a6cf7;
-        --background-color: #f8f9fa;
-        --form-bg-color: #ffffff;
-        --border-color: #e5e7eb;
-        --text-color: #2c3e50;
-        --error-color: #dc3545;
-        --success-color: #4CAF50;
-        --hover-color: rgba(74, 108, 247, 0.05);
-    }
-
-    /* Enhanced Desktop Styles */
-    .container {
-        width: 100%;
-        max-width: 800px;
-        margin: 40px auto;
-        padding: 30px;
-        background: var(--form-bg-color);
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    .form-section {
-        transition: all 0.3s ease;
-        border: 1px solid var(--border-color);
-        margin-bottom: 25px;
-    }
-
-    .form-section:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    }
-
-    .form-control {
-        transition: all 0.3s ease;
-    }
-
-    .form-control:hover {
-        border-color: var(--primary-color);
-    }
-
-    .form-control:focus {
-        box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
-    }
-
-    .btn {
-        transition: all 0.3s ease;
-        font-weight: 600;
-        letter-spacing: 0.3px;
-    }
-
-    .btn-primary {
-        padding: 12px 30px;
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(74, 108, 247, 0.2);
-    }
-
-    .upload-btn {
-        transition: all 0.3s ease;
-    }
-
-    .upload-btn:hover {
-        background: var(--hover-color);
-        transform: translateY(-1px);
-    }
-
-    /* Enhanced Mobile Styles */
-    @media screen and (max-width: 768px) {
-        .container {
-            margin: 0;
-            padding: 15px;
-            border-radius: 0;
-            box-shadow: none;
-        }
-
-        .form-section {
-            padding: 20px;
-            margin-bottom: 15px;
-        }
-
-        .form-label {
-            font-size: 15px;
-        }
-
-        .form-control {
-            padding: 10px 14px;
-            font-size: 15px;
-        }
-
-        /* Improve touch targets for mobile */
-        .radio-option, 
-        .upload-btn,
-        .btn {
-            min-height: 44px;
-            display: flex;
-            align-items: center;
-        }
-
-        /* Better spacing for stacked buttons */
-        .button-group {
-            gap: 15px;
-        }
-
-        /* Enhanced mobile form layout */
-        [style*="display: flex"] {
-            flex-direction: column;
-        }
-
-        [style*="flex: 1"] {
-            flex: none;
-        }
-
-        /* Improved mobile QR code display */
-        .payment-section img {
-            width: 250px;
-            height: 250px;
-            object-fit: contain;
-        }
-
-        /* Better mobile form groups spacing */
-        .form-group {
-            margin-bottom: 25px;
-        }
-    }
-
-    /* Additional Enhancements for Both */
-    .header {
-        text-align: center;
-        padding: 20px 0 30px;
-    }
-
-    .header h1 {
-        font-size: 28px;
-        margin-bottom: 10px;
-        color: var(--text-color);
-    }
-
-    .required-notice {
-        background: var(--hover-color);
-        padding: 10px 15px;
-        border-radius: 8px;
-        margin-bottom: 25px;
-    }
-
-    /* Payment Section Enhancements */
-    .payment-section {
-        background: linear-gradient(145deg, #ffffff, #f8f9fa);
-    }
-
-    .payment-amount {
-        background: var(--hover-color);
-        padding: 15px;
-        border-radius: 8px;
-        text-align: center;
-    }
-
-    /* Success Message Enhancement */
-    .success-message {
-        animation: slideIn 0.3s ease;
-    }
-
-    @keyframes slideIn {
-        from {
-            transform: translate(-50%, -40%);
-            opacity: 0;
-        }
-        to {
-            transform: translate(-50%, -50%);
-            opacity: 1;
-        }
-    }
-</style>
