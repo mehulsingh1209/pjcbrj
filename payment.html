@@ -34,22 +34,21 @@
         .container {
             width: 100%;
             max-width: 800px;
-            margin: 40px auto;
-            padding: 30px;
-            background: var(--form-bg-color);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            padding: 20px;
         }
 
         .header {
-            text-align: center;
-            padding: 20px 0 30px;
+            text-align: left;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
         }
 
         .header h1 {
-            font-size: 28px;
-            color: var(--text-color);
-            margin-bottom: 10px;
+            font-size: 24px;
+            color: #202124;
+            margin-bottom: 5px;
         }
 
         .header p {
@@ -76,10 +75,7 @@
         }
 
         .required-notice {
-            background: var(--hover-color);
-            padding: 10px 15px;
-            border-radius: 8px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             font-size: 14px;
             color: #d93025;
         }
@@ -90,17 +86,10 @@
             box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
             padding: 24px;
             margin-bottom: 12px;
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-        }
-
-        .form-section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .form-group:last-child {
@@ -125,17 +114,12 @@
             font-size: 16px;
             border: 1px solid var(--border-color);
             border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .form-control:hover {
-            border-color: var(--primary-color);
+            transition: border 0.3s;
         }
 
         .form-control:focus {
             border-color: var(--primary-color);
             outline: none;
-            box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
         }
 
         .radio-group {
@@ -146,7 +130,6 @@
             display: flex;
             align-items: center;
             margin-bottom: 10px;
-            min-height: 44px;
         }
 
         .radio-option input[type="radio"] {
@@ -163,13 +146,11 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 14px;
-            transition: all 0.3s ease;
-            min-height: 44px;
+            transition: background-color 0.3s;
         }
 
         .upload-btn:hover {
-            background: var(--hover-color);
-            transform: translateY(-1px);
+            background-color: rgba(26, 115, 232, 0.04);
         }
 
         .upload-btn i {
@@ -204,13 +185,12 @@
         }
 
         .btn {
-            padding: 12px 30px;
+            padding: 10px 24px;
             font-size: 14px;
-            font-weight: 600;
+            font-weight: 500;
             border-radius: 4px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 0.3px;
+            transition: background-color 0.3s;
         }
 
         .btn-primary {
@@ -221,8 +201,6 @@
 
         .btn-primary:hover {
             background-color: #0d62d1;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(74, 108, 247, 0.2);
         }
 
         .btn-secondary {
@@ -245,9 +223,9 @@
             cursor: pointer;
         }
 
+        /* Payment section styles */
         .payment-section {
             margin-top: 20px;
-            background: linear-gradient(145deg, #ffffff, #f8f9fa);
         }
 
         .payment-title {
@@ -256,16 +234,229 @@
             margin-bottom: 15px;
         }
 
-        .payment-amount {
-            background: var(--hover-color);
-            padding: 15px;
-            border-radius: 8px;
+        .payment-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .payment-option {
+            flex: 1;
+            min-width: 120px;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
             text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-option:hover {
+            border-color: var(--primary-color);
+        }
+
+        .payment-option.active {
+            border-color: var(--primary-color);
+            background-color: rgba(26, 115, 232, 0.04);
+        }
+
+        .payment-option img {
+            height: 30px;
+            margin-bottom: 5px;
+        }
+
+        .payment-details {
+            margin-top: 15px;
+        }
+
+        .card-element {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: white;
+            margin-bottom: 15px;
+        }
+
+        .payment-amount {
             font-size: 16px;
             font-weight: 500;
             margin-bottom: 15px;
         }
 
+        /* Responsive styles */
+        @media screen and (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .form-section {
+                padding: 16px;
+            }
+
+            .button-group {
+                flex-direction: column-reverse;
+                gap: 10px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .payment-options {
+                flex-direction: column;
+            }
+        }
+
+        /* Enhanced Desktop Styles */
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: var(--form-bg-color);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section {
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            margin-bottom: 25px;
+        }
+
+        .form-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-control {
+            transition: all 0.3s ease;
+        }
+
+        .form-control:hover {
+            border-color: var(--primary-color);
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+        }
+
+        .btn {
+            transition: all 0.3s ease;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-primary {
+            padding: 12px 30px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 108, 247, 0.2);
+        }
+
+        .upload-btn {
+            transition: all 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            background: var(--hover-color);
+            transform: translateY(-1px);
+        }
+
+        /* Enhanced Mobile Styles */
+        @media screen and (max-width: 768px) {
+            .container {
+                margin: 0;
+                padding: 15px;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .form-section {
+                padding: 20px;
+                margin-bottom: 15px;
+            }
+
+            .form-label {
+                font-size: 15px;
+            }
+
+            .form-control {
+                padding: 10px 14px;
+                font-size: 15px;
+            }
+
+            /* Improve touch targets for mobile */
+            .radio-option, 
+            .upload-btn,
+            .btn {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+
+            /* Better spacing for stacked buttons */
+            .button-group {
+                gap: 15px;
+            }
+
+            /* Enhanced mobile form layout */
+            [style*="display: flex"] {
+                flex-direction: column;
+            }
+
+            [style*="flex: 1"] {
+                flex: none;
+            }
+
+            /* Improved mobile QR code display */
+            .payment-section img {
+                width: 250px;
+                height: 250px;
+                object-fit: contain;
+            }
+
+            /* Better mobile form groups spacing */
+            .form-group {
+                margin-bottom: 25px;
+            }
+        }
+
+        /* Additional Enhancements for Both */
+        .header {
+            text-align: center;
+            padding: 20px 0 30px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .required-notice {
+            background: var(--hover-color);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+        }
+
+        /* Payment Section Enhancements */
+        .payment-section {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+        }
+
+        .payment-amount {
+            background: var(--hover-color);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        /* Success Message Enhancement */
         .success-message {
             animation: slideIn 0.3s ease;
         }
@@ -291,70 +482,6 @@
             30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
             40%, 60% { transform: translate3d(3px, 0, 0); }
         }
-
-        /* Loading spinner */
-        .spinner {
-            display: none;
-            width: 40px;
-            height: 40px;
-            margin: 20px auto;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid var(--primary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Responsive styles */
-        @media screen and (max-width: 768px) {
-            .container {
-                margin: 0;
-                padding: 15px;
-                border-radius: 0;
-                box-shadow: none;
-            }
-
-            .form-section {
-                padding: 20px;
-                margin-bottom: 15px;
-            }
-
-            .form-label {
-                font-size: 15px;
-            }
-
-            .form-control {
-                padding: 10px 14px;
-                font-size: 15px;
-            }
-
-            .button-group {
-                flex-direction: column-reverse;
-                gap: 15px;
-            }
-
-            .btn {
-                width: 100%;
-            }
-
-            [style*="display: flex"] {
-                flex-direction: column;
-            }
-
-            [style*="flex: 1"] {
-                flex: none;
-            }
-
-            .payment-section img {
-                width: 250px;
-                height: 250px;
-                object-fit: contain;
-            }
-        }
     </style>
 </head>
 <body>
@@ -364,6 +491,7 @@
             <p>Panitanki, Birgunj-8, Parsa (Nepal)</p>
         </div>
 
+        <!-- Remove Google account related info and replace with simple divider -->
         <div class="email-info">
             <div>
                 <p>Please fill out the form carefully with accurate information.</p>
@@ -620,9 +748,8 @@
 
             <div class="button-group">
                 <button type="button" class="btn btn-secondary" id="clear-form">Clear form</button>
-                <button type="submit" class="btn btn-primary" id="submit-btn">Submit</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-            <div class="spinner" id="form-spinner"></div>
         </form>
     </div>
 
@@ -662,57 +789,25 @@
             document.getElementById('job-application-form').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                // Show loading spinner
-                const spinner = document.getElementById('form-spinner');
-                const submitBtn = document.getElementById('submit-btn');
-                spinner.style.display = 'block';
-                submitBtn.disabled = true;
-                
                 // Perform validation
                 if (!validateForm()) {
-                    spinner.style.display = 'none';
-                    submitBtn.disabled = false;
                     return;
                 }
                 
                 // Collect and format form data for WhatsApp
                 const whatsappMessage = formatDataForWhatsApp();
                 
-                // Send to WhatsApp silently
-                sendToWhatsAppSilently(whatsappMessage, function() {
-                    // Hide spinner and re-enable button
-                    spinner.style.display = 'none';
-                    submitBtn.disabled = false;
-                    
-                    // Show success message
-                    showSuccessMessage();
-                    
-                    // Reset the form
-                    document.getElementById('job-application-form').reset();
-                    resetFormDisplay();
-                });
+                // Send to WhatsApp
+                sendToWhatsApp(whatsappMessage);
+                
+                // Show success message
+                showSuccessMessage();
+                
+                // Reset the form
+                this.reset();
+                resetFormDisplay();
             });
             
-            // Function to send data to WhatsApp silently
-            function sendToWhatsAppSilently(message, callback) {
-                const phoneNumber = "9779840239391"; // The number to receive applications
-                const encodedMessage = encodeURIComponent(message);
-                
-                // Create a hidden iframe to send the WhatsApp message
-                const iframe = document.createElement('iframe');
-                iframe.style.display = 'none';
-                iframe.src = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
-                
-                // Add to document
-                document.body.appendChild(iframe);
-                
-                // Set timeout to remove iframe and execute callback
-                setTimeout(() => {
-                    document.body.removeChild(iframe);
-                    if (callback) callback();
-                }, 3000);
-            }
-
             // Function to validate all form fields
             function validateForm() {
                 let isValid = true;
@@ -851,6 +946,16 @@
                 return message;
             }
             
+            // Function to send data to WhatsApp
+            function sendToWhatsApp(message) {
+                const phoneNumber = "9779840239391"; // The number to receive applications
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+                
+                // Open WhatsApp in a new tab
+                window.open(whatsappUrl, '_blank');
+            }
+            
             // Helper functions
             function getSelectedRadioValue(name) {
                 const selected = document.querySelector(`input[name="${name}"]:checked`);
@@ -916,6 +1021,7 @@
                         <i class="fas fa-check-circle" style="font-size: 48px; color: var(--success-color); margin-bottom: 15px;"></i>
                         <h3>Application Submitted!</h3>
                         <p>Your job application has been sent successfully.</p>
+                        <p>Redirecting to WhatsApp to complete submission...</p>
                         <button class="btn btn-primary close-success">OK</button>
                     </div>
                 `;
