@@ -608,7 +608,7 @@
             });
         });
 
-        // Form validation and submission
+        // Fix the form validation and submission logic
         document.getElementById('job-application-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -618,7 +618,6 @@
             
             required.forEach(field => {
                 if (field.type === 'file') {
-                    // Check if file inputs have files selected
                     if (!field.files || field.files.length === 0) {
                         valid = false;
                         field.nextElementSibling.style.borderColor = 'var(--error-color)';
@@ -626,9 +625,8 @@
                         field.nextElementSibling.style.borderColor = 'var(--border-color)';
                     }
                 } else if (field.type === 'radio' || field.type === 'checkbox') {
-                    // Skip individual radio buttons (we'll check them as a group below)
                     return;
-                } else if (!field.value) {
+                } else if (!field.value.trim()) {  // Added trim() to check for empty spaces
                     valid = false;
                     field.style.borderColor = 'var(--error-color)';
                 } else {
@@ -644,121 +642,77 @@
             
             Object.keys(radioGroups).forEach(name => {
                 const group = document.querySelectorAll(`input[name="${name}"]`);
-                let groupChecked = false;
-                
-                group.forEach(radio => {
-                    if (radio.checked) {
-                        groupChecked = true;
-                    }
-                });
+                const groupChecked = Array.from(group).some(radio => radio.checked);
                 
                 radioGroups[name] = groupChecked;
+                const parentElement = group[0].closest('.form-group');
                 if (!groupChecked) {
                     valid = false;
-                    group[0].parentElement.parentElement.style.borderColor = 'var(--error-color)';
+                    parentElement.style.borderColor = 'var(--error-color)';
                 } else {
-                    group[0].parentElement.parentElement.style.borderColor = 'var(--border-color)';
+                    parentElement.style.borderColor = 'var(--border-color)';
                 }
             });
             
             // Check terms agreement
-            if (!document.getElementById('terms-agree').checked) {
+            const termsCheckbox = document.getElementById('terms-agree');
+            if (!termsCheckbox.checked) {
                 valid = false;
-                document.getElementById('terms-agree').parentElement.style.color = 'var(--error-color)';
+                termsCheckbox.parentElement.style.color = 'var(--error-color)';
             } else {
-                document.getElementById('terms-agree').parentElement.style.color = 'var(--text-color)';
+                termsCheckbox.parentElement.style.color = 'var(--text-color)';
             }
             
             if (valid) {
-                // Create a loading overlay
-                const loadingOverlay = document.createElement('div');
-                loadingOverlay.style.position = 'fixed';
-                loadingOverlay.style.top = '0';
-                loadingOverlay.style.left = '0';
-                loadingOverlay.style.width = '100%';
-                loadingOverlay.style.height = '100%';
-                loadingOverlay.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-                loadingOverlay.style.display = 'flex';
-                loadingOverlay.style.justifyContent = 'center';
-                loadingOverlay.style.alignItems = 'center';
-                loadingOverlay.style.zIndex = '9999';
-                
-                const loadingMessage = document.createElement('div');
-                loadingMessage.innerHTML = `
-                    <div style="text-align: center;">
-                        <div style="border: 5px solid #f3f3f3; border-top: 5px solid var(--primary-color); border-radius: 50%; width: 50px; height: 50px; margin: 0 auto; animation: spin 2s linear infinite;"></div>
-                        <p style="margin-top: 20px; font-weight: 500;">Processing your application...</p>
-                    </div>
-                `;
-                
-                loadingOverlay.appendChild(loadingMessage);
-                document.body.appendChild(loadingOverlay);
-                
-                // Add the spin animation
-                const style = document.createElement('style');
-                style.innerHTML = `
-                    @keyframes spin {
-                        0% { transform: rotate(0deg); }
-                        100% { transform: rotate(360deg); }
-                    }
-                `;
-                document.head.appendChild(style);
-                
-                // Simulate form submission
-                setTimeout(() => {
-                    loadingOverlay.remove();
+                try {
+                    const formData = new FormData(this);
+                    let message = "🔵 *New Job Application*\n\n";
+                    message += "👤 *Personal Details*\n";
+                    message += `Name: ${formData.get('full-name')}\n`;
+                    message += `DOB: ${formData.get('dob')}\n`;
+                    message += `Citizenship: ${formData.get('citizenship-number')}\n`;
+                    message += `Current Address: ${formData.get('current-address')}\n`;
+                    message += `Permanent Address: ${formData.get('permanent-address')}\n`;
+                    message += `Contact: ${formData.get('contact-no')}\n\n`;
                     
-                    // Show success message
-                    const successMessage = document.createElement('div');
-                    successMessage.style.position = 'fixed';
-                    successMessage.style.top = '50%';
-                    successMessage.style.left = '50%';
-                    successMessage.style.transform = 'translate(-50%, -50%)';
-                    successMessage.style.backgroundColor = 'white';
-                    successMessage.style.padding = '30px';
-                    successMessage.style.borderRadius = '8px';
-                    successMessage.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
-                    successMessage.style.zIndex = '9999';
-                    successMessage.style.maxWidth = '90%';
-                    successMessage.style.width = '400px';
+                    message += "💼 *Job Details*\n";
+                    message += `Position: ${formData.get('job-position')}\n`;
+                    message += `Education: ${formData.get('education')}\n`;
+                    message += `Relation: ${formData.get('relation')}\n\n`;
                     
-                    successMessage.innerHTML = `
-                        <div style="text-align: center;">
-                            <div style="color: #4CAF50; font-size: 40px; margin-bottom: 20px;">
-                                <i class="fas fa-check-circle"></i>
-                            </div>
-                            <h3 style="margin-bottom: 10px; color: #4CAF50;">Application Submitted Successfully!</h3>
-                            <p style="margin-bottom: 20px;">Your payment has been verified and your application has been received.</p>
-                            <p style="margin-bottom: 20px;">Application Reference: <strong>PJC-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}</strong></p>
-                            <button id="close-success" style="padding: 10px 20px; background-color: var(--primary-color); color: white; border: none; border-radius: 4px; cursor: pointer;">OK</button>
-                        </div>
-                    `;
+                    message += "💳 *Payment Details*\n";
+                    message += `Method: ${formData.get('payment-method')}\n`;
+                    message += `Transaction ID: ${formData.get('transaction-id')}\n`;
                     
-                    document.body.appendChild(successMessage);
+                    const encodedMessage = encodeURIComponent(message);
+                    window.open(`https://wa.me/9779840239391?text=${encodedMessage}`, '_blank');
                     
-                    document.getElementById('close-success').addEventListener('click', function() {
-                        successMessage.remove();
-                        // Reset the form after successful submission
-                        document.getElementById('job-application-form').reset();
+                    alert('Application submitted! Redirecting to WhatsApp...');
+                    this.reset();
+                    
+                    // Reset all error states
+                    document.querySelectorAll('[style*="border-color"]').forEach(element => {
+                        element.style.borderColor = 'var(--border-color)';
                     });
-                }, 3000);
+                    
+                } catch (error) {
+                    console.error('Form submission error:', error);
+                    alert('An error occurred. Please try again.');
+                }
             } else {
-                // Scroll to the first error
                 const firstError = document.querySelector('[style*="border-color: var(--error-color)"]');
                 if (firstError) {
                     firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
-                
-                // Show error message
-                alert('Please fill in all required fields and check your information.');
+                alert('Please fill in all required fields correctly.');
             }
         });
 
-        // Clear form
-        document.getElementById('clear-form').addEventListener('click', function() {
-            document.getElementById('job-application-form').reset();
-        });
-    </script>
+    // Clear form
+    document.getElementById('clear-form').addEventListener('click', function() {
+        document.getElementById('job-application-form').reset();
+    });
+</script>
 </body>
 </html>
 <style>
