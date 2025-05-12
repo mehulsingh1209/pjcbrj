@@ -999,7 +999,7 @@
     <!-- Success Modal -->
     <div class="modal-overlay" id="success-modal">
         <div class="modal">
-            <span class="modal-close" id="close-success-modal">&times;</span>
+                        <span class="modal-close" id="close-success-modal">&times;</span>
             <div class="modal-header">
                 <h3 class="modal-title">Application Submitted Successfully!</h3>
             </div>
@@ -1012,6 +1012,9 @@
                 </div>
                 <p style="text-align: center;">Your application has been submitted successfully. We will contact you shortly.</p>
                 <p style="text-align: center; margin-top: 10px;">Application ID: <strong id="application-id">APP-123456</strong></p>
+                <p style="text-align: center; margin-top: 10px; font-size: 14px; color: #666;">
+                    Please check your WhatsApp to complete the submission process.
+                </p>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" id="close-success-btn">Close</button>
@@ -1037,6 +1040,89 @@
     <!-- JavaScript -->
     <script>
         $(document).ready(function() {
+            // WhatsApp number to send data to
+            const whatsappNumber = "+9779865313388";
+            
+            // Function to format data for WhatsApp message
+            function formatWhatsAppMessage(formData) {
+                let message = "📝 *New Job Application Submission* 📝\n\n";
+                
+                // Personal Information
+                message += "👤 *Personal Information:*\n";
+                message += `• Name: ${formData['full-name']}\n`;
+                message += `• Date of Birth: ${formData.dob}\n`;
+                message += `• Citizenship No: ${formData['citizenship-number']}\n`;
+                message += `• Current Address: ${formData['current-address']}\n`;
+                message += `• Permanent Address: ${formData['permanent-address']}\n`;
+                message += `• Gender: ${formData.gender || 'Not specified'}\n\n`;
+                
+                // Contact Information
+                message += "📱 *Contact Information:*\n";
+                message += `• Phone: ${formData['contact-no']}\n`;
+                message += `• Email: ${formData.email}\n\n`;
+                
+                // Job Information
+                message += "💼 *Job Information:*\n";
+                message += `• Position Applied: ${formData['job-position']}\n\n`;
+                
+                // Family Information
+                message += "👨‍👩‍👧‍👦 *Family Information:*\n";
+                if (formData['family-info'] === 'member') {
+                    message += `• Member Name: ${formData['member-name']}\n`;
+                    message += `• Member Age: ${formData['member-age']}\n`;
+                    message += `• Member Citizenship: ${formData['member-citizenship']}\n`;
+                } else if (formData['family-info'] === 'nominee') {
+                    message += `• Nominee Name: ${formData['nominee-name']}\n`;
+                    message += `• Nominee Citizenship: ${formData['nominee-citizenship']}\n`;
+                }
+                message += `• Relation: ${formData.relation}\n\n`;
+                
+                // Education
+                message += "🎓 *Education Details:*\n";
+                message += `• Education Level: ${formData.education}\n`;
+                if (formData.education !== 'below-slc') {
+                    message += `• Institution: ${formData['institution-name']}\n`;
+                    message += `• Completion Year: ${formData['completion-year']}\n`;
+                    message += `• Major Subject: ${formData['major-subject']}\n`;
+                }
+                message += "\n";
+                
+                // Payment Information
+                message += "💳 *Payment Information:*\n";
+                message += `• Transaction ID: ${formData.transactionId || 'N/A'}\n`;
+                message += `• Payment Method: Khalti\n`;
+                message += `• Amount: NPR 1500\n`;
+                message += `• Payment Date: ${formData.paymentDate || 'N/A'}\n\n`;
+                
+                // Terms Agreement
+                message += "✅ *Terms Accepted:* Yes\n\n";
+                
+                // Application ID
+                message += `🔖 *Application ID:* ${formData.applicationId || 'N/A'}\n`;
+                
+                return encodeURIComponent(message);
+            }
+            
+            // Function to send data to WhatsApp
+            function sendToWhatsApp(formData, passportPhoto, signature) {
+                // Format the message
+                const message = formatWhatsAppMessage(formData);
+                
+                // Create WhatsApp share link
+                let whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+                
+                // Open in new tab
+                window.open(whatsappUrl, '_blank');
+                
+                // For file uploads, we can't directly send via WhatsApp API
+                // So we'll alert the user to send files manually
+                if (passportPhoto || signature) {
+                    setTimeout(() => {
+                        alert("Please send the uploaded files (passport photo and signature) separately via WhatsApp if they haven't been sent automatically.");
+                    }, 1000);
+                }
+            }
+            
             // Form validation function
             function validateForm() {
                 let isValid = true;
@@ -1274,8 +1360,8 @@
                 // First validate required fields before payment
                 let isFormValid = true;
                 
-                // Check all required fields except payment
-                $('[required]').not('[name="terms-agreement"]').each(function() {
+                // Check all required fields except payment and terms
+                $('[required]').not('[name="terms-agreement"]').not('[id="payment-verification"]').each(function() {
                     if ($(this).is(':checkbox') && !$(this).is(':checked')) {
                         isFormValid = false;
                     } else if ($(this).val() === '' || $(this).val() === null) {
@@ -1310,19 +1396,49 @@
                 $('#processing-modal').css('display', 'flex');
                 
                 // Collect form data
-                const formData = new FormData(this);
+                const formData = {
+                    'full-name': $('#full-name').val(),
+                    'dob': $('#dob').val(),
+                    'citizenship-number': $('#citizenship-number').val(),
+                    'current-address': $('#current-address').val(),
+                    'permanent-address': $('#permanent-address').val(),
+                    'gender': $('input[name="gender"]:checked').val(),
+                    'contact-no': $('#contact-no').val(),
+                    'email': $('#email').val(),
+                    'job-position': $('#job-position').val(),
+                    'family-info': $('input[name="family-info"]:checked').val(),
+                    'member-name': $('#member-name').val(),
+                    'member-age': $('#member-age').val(),
+                    'member-citizenship': $('#member-citizenship').val(),
+                    'nominee-name': $('#nominee-name').val(),
+                    'nominee-citizenship': $('#nominee-citizenship').val(),
+                    'relation': $('#relation').val(),
+                    'education': $('#education').val(),
+                    'institution-name': $('#institution-name').val(),
+                    'completion-year': $('#completion-year').val(),
+                    'major-subject': $('#major-subject').val(),
+                    'transactionId': $('#receipt-transaction-id').text(),
+                    'paymentDate': $('#receipt-datetime').text(),
+                    'applicationId': 'APP-' + Math.floor(100000 + Math.random() * 900000)
+                };
                 
-                // Simulate form submission (replace with actual AJAX submission)
-                setTimeout(function() {
+                // Get files
+                const passportPhoto = $('#passport-photo')[0].files[0];
+                const signature = $('#signature')[0].files[0];
+                
+                // Simulate processing delay
+                setTimeout(() => {
                     // Hide processing modal
                     $('#processing-modal').css('display', 'none');
                     
-                    // Generate random application ID
-                    const appId = 'APP-' + Math.floor(100000 + Math.random() * 900000);
-                    $('#application-id').text(appId);
+                    // Set application ID
+                    $('#application-id').text(formData.applicationId);
                     
                     // Show success modal
                     $('#success-modal').css('display', 'flex');
+                    
+                    // Send data to WhatsApp
+                    sendToWhatsApp(formData, passportPhoto, signature);
                     
                     // Reset form after successful submission
                     $('#job-application-form')[0].reset();
@@ -1332,6 +1448,8 @@
                     $('#education-details-section').hide();
                     $('#payment-verification').removeClass('show');
                     $('#submit-btn').prop('disabled', true);
+                    $('.error-message').hide();
+                    $('.form-control').removeClass('error');
                 }, 2000);
             });
 
