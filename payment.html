@@ -32,6 +32,8 @@
             background-color: var(--background-color);
             color: var(--text-color);
             line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px 0;
         }
 
         .container {
@@ -39,6 +41,9 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            background: var(--form-bg-color);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .header {
@@ -89,6 +94,13 @@
             box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 2px 6px 2px rgba(60, 64, 67, 0.15);
             padding: 24px;
             margin-bottom: 12px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        .form-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
 
         .form-group {
@@ -123,6 +135,7 @@
         .form-control:focus {
             border-color: var(--primary-color);
             outline: none;
+            box-shadow: 0 0 0 2px rgba(74, 108, 247, 0.2);
         }
 
         .radio-group {
@@ -149,11 +162,12 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 14px;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
 
         .upload-btn:hover {
             background-color: rgba(26, 115, 232, 0.04);
+            transform: translateY(-1px);
         }
 
         .upload-btn i {
@@ -185,15 +199,18 @@
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
+            gap: 15px;
         }
 
         .btn {
-            padding: 10px 24px;
-            font-size: 14px;
+            padding: 12px 24px;
+            font-size: 16px;
             font-weight: 500;
             border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
         }
 
         .btn-primary {
@@ -204,16 +221,20 @@
 
         .btn-primary:hover {
             background-color: #0d62d1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .btn-secondary {
             background-color: transparent;
             color: var(--primary-color);
-            border: none;
+            border: 1px solid var(--primary-color);
         }
 
         .btn-secondary:hover {
             background-color: rgba(26, 115, 232, 0.04);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .dropdown-select {
@@ -224,6 +245,11 @@
             border-radius: 4px;
             background-color: white;
             cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
         }
 
         /* Payment section styles */
@@ -342,30 +368,26 @@
             border-bottom: none;
         }
 
-        /* Enhanced styles */
-        .container {
-            width: 100%;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 30px;
-            background: var(--form-bg-color);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        /* Responsive grid for form fields */
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
         }
 
-        .form-section {
-            transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
-            margin-bottom: 25px;
-        }
-
-        .form-section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        .form-col {
+            flex: 1;
+            min-width: 200px;
         }
 
         /* Mobile responsive styles */
         @media screen and (max-width: 768px) {
+            body {
+                padding: 0;
+                background-color: var(--form-bg-color);
+            }
+
             .container {
                 margin: 0;
                 padding: 15px;
@@ -380,11 +402,33 @@
 
             .button-group {
                 flex-direction: column-reverse;
-                gap: 15px;
             }
 
             .btn {
                 width: 100%;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .form-col {
+                width: 100%;
+                min-width: 100%;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .payment-option {
+                padding: 12px;
+            }
+
+            .payment-option img {
+                height: 30px;
+                margin-right: 10px;
             }
         }
 
@@ -425,6 +469,11 @@
             font-size: 20px;
             cursor: pointer;
             color: #666;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: #333;
         }
         
         .modal-header {
@@ -563,16 +612,74 @@
             font-weight: 500;
             cursor: pointer;
             width: 100%;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
 
         .khalti-button:hover {
             background-color: #4b2573;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .khalti-button:disabled {
             background-color: #9d8db3;
             cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Form validation styles */
+        .error-message {
+            color: var(--error-color);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-control.error {
+            border-color: var(--error-color);
+        }
+
+        /* File upload preview styles */
+        .file-preview {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .file-preview img {
+            max-width: 150px;
+            max-height: 150px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .file-preview .remove-btn {
+            color: var(--error-color);
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        /* Responsive adjustments for small screens */
+        @media screen and (max-width: 480px) {
+            .form-control, .dropdown-select {
+                padding: 10px 12px;
+                font-size: 15px;
+            }
+
+            .form-section {
+                padding: 15px;
+            }
+
+            .payment-option {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .payment-option img {
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
@@ -596,33 +703,42 @@
             <p>* Indicates required question</p>
         </div>
 
-        <form id="job-application-form">
+        <form id="job-application-form" novalidate>
             <!-- Personal Information Section -->
             <div class="form-section">
                 <div class="form-group">
                     <label for="full-name" class="form-label required">Your Name</label>
                     <input type="text" id="full-name" name="full-name" class="form-control" placeholder="Enter your full name as per citizenship" required>
+                    <div class="error-message" id="full-name-error">Please enter your full name</div>
                 </div>
                 
-                <div style="display: flex; gap: 10px; margin-top: 15px;">
-                    <div class="form-group" style="flex: 1;">
-                        <label for="dob" class="form-label required">Date of Birth</label>
-                        <input type="date" id="dob" name="dob" class="form-control" required>
+                <div class="form-row">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="dob" class="form-label required">Date of Birth</label>
+                            <input type="date" id="dob" name="dob" class="form-control" required>
+                            <div class="error-message" id="dob-error">Please select your date of birth</div>
+                        </div>
                     </div>
-                    <div class="form-group" style="flex: 1;">
-                        <label for="citizenship-number" class="form-label required">Citizenship Number</label>
-                        <input type="text" id="citizenship-number" name="citizenship-number" class="form-control" required>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="citizenship-number" class="form-label required">Citizenship Number</label>
+                            <input type="text" id="citizenship-number" name="citizenship-number" class="form-control" required>
+                            <div class="error-message" id="citizenship-error">Please enter your citizenship number</div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="form-group" style="margin-top: 15px;">
+                <div class="form-group">
                     <label for="current-address" class="form-label required">Current Address</label>
                     <input type="text" id="current-address" name="current-address" class="form-control" placeholder="Municipality/VDC, Ward, District, Province" required>
+                    <div class="error-message" id="current-address-error">Please enter your current address</div>
                 </div>
                 
-                <div class="form-group" style="margin-top: 15px;">
+                <div class="form-group">
                     <label for="permanent-address" class="form-label required">Permanent Address</label>
                     <input type="text" id="permanent-address" name="permanent-address" class="form-control" placeholder="Municipality/VDC, Ward, District, Province" required>
+                    <div class="error-message" id="permanent-address-error">Please enter your permanent address</div>
                 </div>
             </div>
 
@@ -634,8 +750,9 @@
                     <label for="passport-photo" class="upload-btn">
                         <i class="fas fa-upload"></i> Add file
                     </label>
-                    <p class="upload-info">Upload 1 supported file. Max 10 MB.</p>
-                    <div id="passport-photo-preview" style="margin-top: 10px;"></div>
+                    <p class="upload-info">Upload 1 supported file (JPEG, PNG). Max 10 MB.</p>
+                    <div id="passport-photo-preview" class="file-preview"></div>
+                    <div class="error-message" id="passport-photo-error">Please upload your passport photo</div>
                 </div>
             </div>
 
@@ -652,7 +769,12 @@
                             <input type="radio" id="gender-female" name="gender" value="female">
                             <label for="gender-female">Female</label>
                         </div>
+                        <div class="radio-option">
+                            <input type="radio" id="gender-other" name="gender" value="other">
+                            <label for="gender-other">Other</label>
+                        </div>
                     </div>
+                    <div class="error-message" id="gender-error">Please select your gender</div>
                 </div>
             </div>
 
@@ -661,10 +783,12 @@
                 <div class="form-group">
                     <label for="contact-no" class="form-label required">Contact No.</label>
                     <input type="tel" id="contact-no" name="contact-no" class="form-control" required>
+                    <div class="error-message" id="contact-no-error">Please enter a valid phone number</div>
                 </div>
                 <div class="form-group">
                     <label for="email" class="form-label required">Email Address</label>
                     <input type="email" id="email" name="email" class="form-control" required>
+                    <div class="error-message" id="email-error">Please enter a valid email address</div>
                 </div>
             </div>
 
@@ -673,6 +797,7 @@
                 <div class="form-group">
                     <label for="job-position" class="form-label required">Job Position Applied for</label>
                     <input type="text" id="job-position" name="job-position" class="form-control" required>
+                    <div class="error-message" id="job-position-error">Please enter the job position you're applying for</div>
                 </div>
             </div>
 
@@ -690,20 +815,24 @@
                             <label for="family-nominee">Nominee Name and Citizenship No:</label>
                         </div>
                     </div>
+                    <div class="error-message" id="family-info-error">Please select family information option</div>
                     
                     <div id="family-details-section" style="margin-top: 15px; display: none;">
                         <div class="form-group" id="family-member-details">
                             <div class="form-group">
                                 <label for="member-name" class="form-label">Member Name</label>
                                 <input type="text" id="member-name" name="member-name" class="form-control">
+                                <div class="error-message" id="member-name-error">Please enter member name</div>
                             </div>
                             <div class="form-group">
                                 <label for="member-age" class="form-label">Age</label>
                                 <input type="number" id="member-age" name="member-age" class="form-control" min="1" max="120">
+                                <div class="error-message" id="member-age-error">Please enter valid age (1-120)</div>
                             </div>
                             <div class="form-group">
                                 <label for="member-citizenship" class="form-label">Citizenship No</label>
                                 <input type="text" id="member-citizenship" name="member-citizenship" class="form-control">
+                                <div class="error-message" id="member-citizenship-error">Please enter citizenship number</div>
                             </div>
                         </div>
                         
@@ -711,10 +840,12 @@
                             <div class="form-group">
                                 <label for="nominee-name" class="form-label">Nominee Name</label>
                                 <input type="text" id="nominee-name" name="nominee-name" class="form-control">
+                                <div class="error-message" id="nominee-name-error">Please enter nominee name</div>
                             </div>
                             <div class="form-group">
                                 <label for="nominee-citizenship" class="form-label">Citizenship No</label>
                                 <input type="text" id="nominee-citizenship" name="nominee-citizenship" class="form-control">
+                                <div class="error-message" id="nominee-citizenship-error">Please enter citizenship number</div>
                             </div>
                         </div>
                     </div>
@@ -726,9 +857,10 @@
                 <div class="form-group">
                     <label for="relation" class="form-label required">Relation to the job applicant:</label>
                     <input type="text" id="relation" name="relation" class="form-control" required>
-                    <p class="form-hint" style="font-size: 13px; color: #5f6368; margin-top: 5px;">
+                    <p class="upload-info" style="margin-top: 5px;">
                         E.g., Father, Mother, Brother, Sister, Spouse, etc.
                     </p>
+                    <div class="error-message" id="relation-error">Please specify your relation</div>
                 </div>
             </div>
 
@@ -746,19 +878,23 @@
                         <option value="phd">PhD</option>
                         <option value="other">Other</option>
                     </select>
+                    <div class="error-message" id="education-error">Please select your education level</div>
                 </div>
                 <div class="form-group education-details" style="display: none;" id="education-details-section">
                     <div class="form-group">
                         <label for="institution-name" class="form-label">Institution Name</label>
                         <input type="text" id="institution-name" name="institution-name" class="form-control">
+                        <div class="error-message" id="institution-name-error">Please enter institution name</div>
                     </div>
                     <div class="form-group">
                         <label for="completion-year" class="form-label">Year of Completion</label>
-                        <input type="text" id="completion-year" name="completion-year" class="form-control" placeholder="YYYY">
+                        <input type="text" id="completion-year" name="completion-year" class="form-control" placeholder="YYYY" pattern="\d{4}">
+                        <div class="error-message" id="completion-year-error">Please enter valid year (YYYY)</div>
                     </div>
                     <div class="form-group">
                         <label for="major-subject" class="form-label">Major Subject/Faculty</label>
                         <input type="text" id="major-subject" name="major-subject" class="form-control">
+                        <div class="error-message" id="major-subject-error">Please enter major subject</div>
                     </div>
                 </div>
             </div>
@@ -771,8 +907,9 @@
                     <label for="signature" class="upload-btn">
                         <i class="fas fa-upload"></i> Add file
                     </label>
-                    <p class="upload-info">Upload 1 supported file. Max 10 MB.</p>
-                    <div id="signature-preview" style="margin-top: 10px;"></div>
+                    <p class="upload-info">Upload 1 supported file (JPEG, PNG). Max 10 MB.</p>
+                    <div id="signature-preview" class="file-preview"></div>
+                    <div class="error-message" id="signature-error">Please upload your signature</div>
                 </div>
             </div>
 
@@ -784,7 +921,7 @@
                 <div class="form-group">
                     <!-- Payment Option -->
                     <div class="payment-option active" data-payment="khalti">
-                        <img src="/api/placeholder/80/40" alt="Khalti">
+                        <img src="https://web.khalti.com/static/img/logo.png" alt="Khalti">
                         <div class="payment-option-info">
                             <span class="payment-option-name">Khalti Digital Wallet</span>
                             <p class="payment-option-description">Fast, secure online payment</p>
@@ -826,6 +963,7 @@
                             </div>
                         </div>
                     </div>
+                    <div class="error-message" id="payment-error">Please complete the payment process</div>
                 </div>
             </div>
 
@@ -845,6 +983,7 @@
                             <input type="checkbox" id="terms-agreement" name="terms-agreement" required>
                             <label for="terms-agreement">I agree to the terms and conditions</label>
                         </div>
+                        <div class="error-message" id="terms-error">You must agree to the terms and conditions</div>
                     </div>
                 </div>
             </div>
@@ -898,15 +1037,87 @@
     <!-- JavaScript -->
     <script>
         $(document).ready(function() {
+            // Form validation function
+            function validateForm() {
+                let isValid = true;
+                
+                // Validate required fields
+                $('[required]').each(function() {
+                    const field = $(this);
+                    const errorId = field.attr('id') + '-error';
+                    
+                    if (field.is(':checkbox') && !field.is(':checked')) {
+                        $('#' + errorId).show();
+                        isValid = false;
+                    } else if (field.val() === '' || field.val() === null) {
+                        $('#' + errorId).show();
+                        field.addClass('error');
+                        isValid = false;
+                    } else {
+                        $('#' + errorId).hide();
+                        field.removeClass('error');
+                    }
+                });
+                
+                // Validate email format
+                const email = $('#email').val();
+                if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    $('#email-error').text('Please enter a valid email address').show();
+                    $('#email').addClass('error');
+                    isValid = false;
+                }
+                
+                // Validate phone number (Nepali format)
+                const phone = $('#contact-no').val();
+                if (phone && !/^[9][6-8][0-9]{8}$/.test(phone)) {
+                    $('#contact-no-error').text('Please enter a valid Nepali phone number (98XXXXXXXX)').show();
+                    $('#contact-no').addClass('error');
+                    isValid = false;
+                }
+                
+                // Validate payment verification
+                if (!$('#payment-verification').hasClass('show')) {
+                    $('#payment-error').show();
+                    isValid = false;
+                } else {
+                    $('#payment-error').hide();
+                }
+                
+                return isValid;
+            }
+            
+            // Show error for a specific field
+            function showError(fieldId, message) {
+                const field = $('#' + fieldId);
+                const errorId = fieldId + '-error';
+                
+                field.addClass('error');
+                $('#' + errorId).text(message).show();
+            }
+            
             // Handle file uploads for passport photo
             $('#passport-photo').change(function() {
                 const file = this.files[0];
                 if (file) {
+                    // Check file size (max 10MB)
+                    if (file.size > 10 * 1024 * 1024) {
+                        showError('passport-photo', 'File size must be less than 10MB');
+                        return;
+                    }
+                    
+                    // Check file type
+                    if (!file.type.match('image.*')) {
+                        showError('passport-photo', 'Please upload an image file (JPEG, PNG)');
+                        return;
+                    }
+                    
                     const reader = new FileReader();
                     reader.onload = function(e) {
                         $('#passport-photo-preview').html(`
-                            <img src="${e.target.result}" alt="Passport Photo Preview" style="max-width: 150px; max-height: 150px; border: 1px solid #ddd;">
+                            <img src="${e.target.result}" alt="Passport Photo Preview">
+                            <span class="remove-btn" data-target="passport-photo"><i class="fas fa-times"></i> Remove</span>
                         `);
+                        $('#passport-photo-error').hide();
                     }
                     reader.readAsDataURL(file);
                 }
@@ -916,27 +1127,68 @@
             $('#signature').change(function() {
                 const file = this.files[0];
                 if (file) {
+                    // Check file size (max 10MB)
+                    if (file.size > 10 * 1024 * 1024) {
+                        showError('signature', 'File size must be less than 10MB');
+                        return;
+                    }
+                    
+                    // Check file type
+                    if (!file.type.match('image.*')) {
+                        showError('signature', 'Please upload an image file (JPEG, PNG)');
+                        return;
+                    }
+                    
                     const reader = new FileReader();
                     reader.onload = function(e) {
                         $('#signature-preview').html(`
-                            <img src="${e.target.result}" alt="Signature Preview" style="max-width: 150px; max-height: 100px; border: 1px solid #ddd;">
+                            <img src="${e.target.result}" alt="Signature Preview">
+                            <span class="remove-btn" data-target="signature"><i class="fas fa-times"></i> Remove</span>
                         `);
+                        $('#signature-error').hide();
                     }
                     reader.readAsDataURL(file);
                 }
+            });
+            
+            // Handle remove file button
+            $(document).on('click', '.remove-btn', function() {
+                const target = $(this).data('target');
+                $('#' + target).val('');
+                $('#' + target + '-preview').empty();
+                $('#' + target + '-error').show();
             });
 
             // Handle family information radio buttons
             $('input[name="family-info"]').change(function() {
                 const value = $(this).val();
                 $('#family-details-section').show();
+                $('#family-info-error').hide();
                 
                 if (value === 'member') {
                     $('#family-member-details').show();
                     $('#nominee-details').hide();
+                    
+                    // Make member fields required
+                    $('#member-name').attr('required', true);
+                    $('#member-age').attr('required', true);
+                    $('#member-citizenship').attr('required', true);
+                    
+                    // Remove required from nominee fields
+                    $('#nominee-name').removeAttr('required');
+                    $('#nominee-citizenship').removeAttr('required');
                 } else if (value === 'nominee') {
                     $('#family-member-details').hide();
                     $('#nominee-details').show();
+                    
+                    // Make nominee fields required
+                    $('#nominee-name').attr('required', true);
+                    $('#nominee-citizenship').attr('required', true);
+                    
+                    // Remove required from member fields
+                    $('#member-name').removeAttr('required');
+                    $('#member-age').removeAttr('required');
+                    $('#member-citizenship').removeAttr('required');
                 }
             });
 
@@ -944,8 +1196,19 @@
             $('#education').change(function() {
                 if ($(this).val() !== '') {
                     $('#education-details-section').show();
+                    $('#education-error').hide();
+                    
+                    // Make education details fields required
+                    $('#institution-name').attr('required', true);
+                    $('#completion-year').attr('required', true);
+                    $('#major-subject').attr('required', true);
                 } else {
                     $('#education-details-section').hide();
+                    
+                    // Remove required from education details fields
+                    $('#institution-name').removeAttr('required');
+                    $('#completion-year').removeAttr('required');
+                    $('#major-subject').removeAttr('required');
                 }
             });
 
@@ -970,10 +1233,27 @@
                         // Show payment verification
                         $('#payment-verification').addClass('show');
                         $('#receipt-transaction-id').text(payload.idx);
-                        $('#receipt-datetime').text(new Date().toLocaleString());
                         
-                        // Enable submit button
-                        $('#submit-btn').prop('disabled', false);
+                        // Format date and time
+                        const now = new Date();
+                        const formattedDate = now.toLocaleDateString('en-NP', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
+                        });
+                        const formattedTime = now.toLocaleTimeString('en-NP', {
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+                        $('#receipt-datetime').text(`${formattedDate} at ${formattedTime}`);
+                        
+                        // Hide payment error
+                        $('#payment-error').hide();
+                        
+                        // Enable submit button if terms are agreed
+                        if ($('#terms-agreement').is(':checked')) {
+                            $('#submit-btn').prop('disabled', false);
+                        }
                     },
                     onError(error) {
                         // Handle errors
@@ -991,6 +1271,24 @@
             
             // Bind Khalti payment button
             $('#pay-now-btn').click(function() {
+                // First validate required fields before payment
+                let isFormValid = true;
+                
+                // Check all required fields except payment
+                $('[required]').not('[name="terms-agreement"]').each(function() {
+                    if ($(this).is(':checkbox') && !$(this).is(':checked')) {
+                        isFormValid = false;
+                    } else if ($(this).val() === '' || $(this).val() === null) {
+                        isFormValid = false;
+                    }
+                });
+                
+                if (!isFormValid) {
+                    alert('Please fill all required fields before making payment');
+                    validateForm();
+                    return;
+                }
+                
                 // Display payment amount in paisa (1 NPR = 100 paisa)
                 checkout.show({amount: 1500 * 100});
             });
@@ -999,15 +1297,20 @@
             $('#job-application-form').submit(function(e) {
                 e.preventDefault();
                 
-                // Check if all required fields are filled
-                if (this.checkValidity() === false) {
-                    e.stopPropagation();
-                    $(this).addClass('was-validated');
+                // Validate form
+                if (!validateForm()) {
+                    // Scroll to first error
+                    $('html, body').animate({
+                        scrollTop: $('.error').first().offset().top - 100
+                    }, 500);
                     return;
                 }
                 
                 // Show processing modal
                 $('#processing-modal').css('display', 'flex');
+                
+                // Collect form data
+                const formData = new FormData(this);
                 
                 // Simulate form submission (replace with actual AJAX submission)
                 setTimeout(function() {
@@ -1020,6 +1323,15 @@
                     
                     // Show success modal
                     $('#success-modal').css('display', 'flex');
+                    
+                    // Reset form after successful submission
+                    $('#job-application-form')[0].reset();
+                    $('#passport-photo-preview').empty();
+                    $('#signature-preview').empty();
+                    $('#family-details-section').hide();
+                    $('#education-details-section').hide();
+                    $('#payment-verification').removeClass('show');
+                    $('#submit-btn').prop('disabled', true);
                 }, 2000);
             });
 
@@ -1033,6 +1345,8 @@
                     $('#education-details-section').hide();
                     $('#payment-verification').removeClass('show');
                     $('#submit-btn').prop('disabled', true);
+                    $('.error-message').hide();
+                    $('.form-control').removeClass('error');
                 }
             });
 
@@ -1041,12 +1355,52 @@
                 $('.modal-overlay').css('display', 'none');
             });
             
-            // Enable submit button when terms are agreed
+            // Enable submit button when terms are agreed and payment is verified
             $('#terms-agreement').change(function() {
                 if ($(this).is(':checked') && $('#payment-verification').hasClass('show')) {
                     $('#submit-btn').prop('disabled', false);
+                    $('#terms-error').hide();
                 } else {
                     $('#submit-btn').prop('disabled', true);
+                }
+            });
+            
+            // Real-time validation for fields
+            $('input, select, textarea').on('input change', function() {
+                const field = $(this);
+                const errorId = field.attr('id') + '-error';
+                
+                if (field.is(':checkbox')) {
+                    if (field.is(':checked')) {
+                        $('#' + errorId).hide();
+                    }
+                } else if (field.val()) {
+                    $('#' + errorId).hide();
+                    field.removeClass('error');
+                }
+            });
+            
+            // Validate email on blur
+            $('#email').on('blur', function() {
+                const email = $(this).val();
+                if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    showError('email', 'Please enter a valid email address');
+                }
+            });
+            
+            // Validate phone number on blur
+            $('#contact-no').on('blur', function() {
+                const phone = $(this).val();
+                if (phone && !/^[9][6-8][0-9]{8}$/.test(phone)) {
+                    showError('contact-no', 'Please enter a valid Nepali phone number (98XXXXXXXX)');
+                }
+            });
+            
+            // Validate year format on blur
+            $('#completion-year').on('blur', function() {
+                const year = $(this).val();
+                if (year && !/^\d{4}$/.test(year)) {
+                    showError('completion-year', 'Please enter valid year (YYYY)');
                 }
             });
         });
