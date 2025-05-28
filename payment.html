@@ -252,7 +252,7 @@
             background-size: 16px;
         }
 
-        /* Payment section styles */
+                /* Payment section styles */
         .payment-section {
             margin-top: 20px;
         }
@@ -283,53 +283,183 @@
             border-color: var(--khalti-color);
             background-color: rgba(93, 46, 142, 0.1);
         }
-
-        .payment-option img {
-            height: 40px;
-            margin-right: 15px;
-            object-fit: contain;
+        
+        /* Add eSewa color variable */
+        :root {
+            --primary-color: #4a6cf7;
+            --background-color: #f8f9fa;
+            --form-bg-color: #ffffff;
+            --border-color: #e5e7eb;
+            --text-color: #2c3e50;
+            --error-color: #dc3545;
+            --success-color: #4CAF50;
+            --hover-color: rgba(74, 108, 247, 0.05);
+            --khalti-color: #5D2E8E;
+            --esewa-color: #60BB46;
         }
-
-        .payment-option-info {
-            flex: 1;
+        
+        /* eSewa specific styles */
+        .payment-option.esewa:hover {
+            border-color: var(--esewa-color);
+            background-color: rgba(96, 187, 70, 0.05);
         }
-
-        .payment-option-name {
-            font-size: 16px;
+        
+        .payment-option.esewa.active {
+            border-color: var(--esewa-color);
+            background-color: rgba(96, 187, 70, 0.1);
+        }
+        
+        .esewa-button {
+            background-color: var(--esewa-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
             font-weight: 500;
-            color: var(--khalti-color);
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
         }
-
-        .payment-option-description {
-            font-size: 13px;
-            color: #5f6368;
-            margin-top: 3px;
+        
+        .esewa-button:hover {
+            background-color: #4fa83a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
-        .payment-amount {
-            font-size: 16px;
-            font-weight: 500;
-            margin: 20px 0;
-            background-color: rgba(93, 46, 142, 0.05);
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            color: var(--khalti-color);
+        
+        .esewa-button:disabled {
+            background-color: #a3d695;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
-
-        /* Payment verification section */
-        .payment-verification {
+        
+        .qr-code-container {
             display: none;
-            margin-top: 20px;
+            text-align: center;
+            margin: 20px 0;
             padding: 15px;
-            border: 1px solid var(--success-color);
+            border: 1px solid var(--esewa-color);
             border-radius: 8px;
-            background-color: rgba(76, 175, 80, 0.1);
+            background-color: rgba(96, 187, 70, 0.05);
         }
-
-        .payment-verification.show {
+        
+        .qr-code-container img {
+            max-width: 200px;
+            margin: 0 auto;
+        }
+        
+        .qr-code-instructions {
+            margin-top: 15px;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        
+        .payment-verification-form {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .payment-verification-form.show {
             display: block;
-            animation: fadeIn 0.5s;
+        }
+        
+        /* Responsive adjustments for payment options */
+        @media screen and (max-width: 480px) {
+            .payment-options-container {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        /* Add eSewa color variable */
+        :root {
+            --primary-color: #4a6cf7;
+            --background-color: #f8f9fa;
+            --form-bg-color: #ffffff;
+            --border-color: #e5e7eb;
+            --text-color: #2c3e50;
+            --error-color: #dc3545;
+            --success-color: #4CAF50;
+            --hover-color: rgba(74, 108, 247, 0.05);
+            --khalti-color: #5D2E8E;
+            --esewa-color: #60BB46;
+        }
+        
+        /* eSewa specific styles */
+        .payment-option.esewa:hover {
+            border-color: var(--esewa-color);
+            background-color: rgba(96, 187, 70, 0.05);
+        }
+        
+        .payment-option.esewa.active {
+            border-color: var(--esewa-color);
+            background-color: rgba(96, 187, 70, 0.1);
+        }
+        
+        .esewa-button {
+            background-color: var(--esewa-color);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        
+        .esewa-button:hover {
+            background-color: #4fa83a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .esewa-button:disabled {
+            background-color: #a3d695;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .qr-code-container {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid var(--esewa-color);
+            border-radius: 8px;
+            background-color: rgba(96, 187, 70, 0.05);
+        }
+        
+        .qr-code-container img {
+            max-width: 200px;
+            margin: 0 auto;
+        }
+        
+        .qr-code-instructions {
+            margin-top: 15px;
+            font-size: 14px;
+            color: var(--text-color);
+        }
+        
+        .payment-verification-form {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .payment-verification-form.show {
+            display: block;
+        }
+        
+        /* Responsive adjustments for payment options */
+        @media screen and (max-width: 480px) {
+            .payment-options-container {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
         }
 
         @keyframes fadeIn {
@@ -913,18 +1043,28 @@
                 </div>
             </div>
 
-            <!-- Payment Section (Updated) -->
+            <!-- Payment Section (Updated with eSewa) -->
             <div class="form-section payment-section">
                 <h3 class="payment-title required">Application Fee Payment</h3>
-                <p>Please pay the application processing fee of NPR 1500 using Khalti Payment Gateway</p>
+                <p>Please pay the application processing fee of NPR 1500 using one of the payment methods below</p>
                 
                 <div class="form-group">
-                    <!-- Payment Option -->
-                    <div class="payment-option active" data-payment="khalti">
-                        <img src="https://web.khalti.com/static/img/logo.png" alt="Khalti">
-                        <div class="payment-option-info">
-                            <span class="payment-option-name">Khalti Digital Wallet</span>
-                            <p class="payment-option-description">Fast, secure online payment</p>
+                    <!-- Payment Options -->
+                    <div class="payment-options-container">
+                        <div class="payment-option active" data-payment="khalti">
+                            <img src="https://web.khalti.com/static/img/logo.png" alt="Khalti">
+                            <div class="payment-option-info">
+                                <span class="payment-option-name">Khalti Digital Wallet</span>
+                                <p class="payment-option-description">Fast, secure online payment</p>
+                            </div>
+                        </div>
+                        
+                        <div class="payment-option esewa" data-payment="esewa">
+                            <img src="https://esewa.com.np/common/images/esewa_logo.png" alt="eSewa">
+                            <div class="payment-option-info">
+                                <span class="payment-option-name">eSewa Digital Wallet</span>
+                                <p class="payment-option-description">Scan QR code to pay</p>
+                            </div>
                         </div>
                     </div>
                     
@@ -932,10 +1072,38 @@
                         <p>Total Amount: <strong>NPR 1500</strong></p>
                     </div>
                     
-                    <div class="form-group">
+                    <!-- Khalti payment button -->
+                    <div class="form-group" id="khalti-payment-section">
                         <button type="button" id="pay-now-btn" class="khalti-button">
                             Pay with Khalti
                         </button>
+                    </div>
+                    
+                    <!-- eSewa QR code section -->
+                    <div class="form-group" id="esewa-payment-section" style="display: none;">
+                        <div class="qr-code-container" id="esewa-qr-container">
+                            <h4>Scan this QR code with your eSewa app</h4>
+                            <img src="https://example.com/esewa-qr-code.png" alt="eSewa QR Code" id="esewa-qr-code">
+                            <div class="qr-code-instructions">
+                                <p>1. Open your eSewa app</p>
+                                <p>2. Tap on 'Scan & Pay'</p>
+                                <p>3. Scan this QR code</p>
+                                <p>4. Enter amount: NPR 1500</p>
+                                <p>5. Complete the payment</p>
+                            </div>
+                        </div>
+                        
+                        <!-- eSewa payment verification form -->
+                        <div class="payment-verification-form" id="esewa-verification-form">
+                            <div class="form-group">
+                                <label for="esewa-transaction-id" class="form-label required">eSewa Transaction ID</label>
+                                <input type="text" id="esewa-transaction-id" name="esewa-transaction-id" class="form-control" placeholder="Enter your eSewa transaction ID">
+                                <div class="error-message" id="esewa-transaction-id-error">Please enter a valid transaction ID</div>
+                            </div>
+                            <button type="button" id="verify-esewa-btn" class="esewa-button">
+                                Verify Payment
+                            </button>
+                        </div>
                     </div>
                     
                     <!-- Payment verification section (initially hidden) -->
@@ -951,7 +1119,7 @@
                             </div>
                             <div class="payment-receipt-row">
                                 <span>Payment Method:</span>
-                                <span>Khalti Digital Wallet</span>
+                                <span id="receipt-payment-method">Khalti Digital Wallet</span>
                             </div>
                             <div class="payment-receipt-row">
                                 <span>Amount:</span>
@@ -1037,7 +1205,6 @@
         </div>
     </div>
 
-    <!-- JavaScript -->
     <script>
         $(document).ready(function() {
             // WhatsApp number to send data to
@@ -1082,130 +1249,203 @@
                 message += `• Education Level: ${formData.education}\n`;
                 if (formData.education !== 'below-slc') {
                     message += `• Institution: ${formData['institution-name']}\n`;
-                    message += `• Completion Year: ${formData['completion-year']}\n`;
-                    message += `• Major Subject: ${formData['major-subject']}\n`;
+                    message += `• Year of Completion: ${formData['completion-year']}\n`;
+                    message += `• Major Subject: ${formData['major-subject']}\n\n`;
                 }
-                message += "\n";
                 
                 // Payment Information
-                message += "💳 *Payment Information:*\n";
-                message += `• Transaction ID: ${formData.transactionId || 'N/A'}\n`;
-                message += `• Payment Method: Khalti\n`;
-                message += `• Amount: NPR 1500\n`;
-                message += `• Payment Date: ${formData.paymentDate || 'N/A'}\n\n`;
-                
-                // Terms Agreement
-                message += "✅ *Terms Accepted:* Yes\n\n";
+                message += "💰 *Payment Information:*\n";
+                message += `• Transaction ID: ${formData.transactionId}\n`;
+                message += `• Payment Method: ${formData.paymentMethod}\n`;
+                message += `• Payment Date: ${formData.paymentDate}\n`;
+                message += `• Amount: NPR 1500\n\n`;
                 
                 // Application ID
-                message += `🔖 *Application ID:* ${formData.applicationId || 'N/A'}\n`;
+                message += `🆔 *Application ID:* ${formData.applicationId}\n\n`;
+                
+                message += "Thank you for your application. We will contact you shortly.";
                 
                 return encodeURIComponent(message);
             }
             
             // Function to send data to WhatsApp
             function sendToWhatsApp(formData, passportPhoto, signature) {
-                // Format the message
                 const message = formatWhatsAppMessage(formData);
+                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
                 
-                // Create WhatsApp share link
-                let whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
-                
-                // Open in new tab
+                // Open WhatsApp in a new tab
                 window.open(whatsappUrl, '_blank');
-                
-                // For file uploads, we can't directly send via WhatsApp API
-                // So we'll alert the user to send files manually
-                if (passportPhoto || signature) {
-                    setTimeout(() => {
-                        alert("Please send the uploaded files (passport photo and signature) separately via WhatsApp if they haven't been sent automatically.");
-                    }, 1000);
-                }
             }
             
             // Form validation function
             function validateForm() {
                 let isValid = true;
                 
-                // Validate required fields
-                $('[required]').each(function() {
-                    const field = $(this);
-                    const errorId = field.attr('id') + '-error';
-                    
-                    if (field.is(':checkbox') && !field.is(':checked')) {
-                        $('#' + errorId).show();
-                        isValid = false;
-                    } else if (field.val() === '' || field.val() === null) {
-                        $('#' + errorId).show();
-                        field.addClass('error');
-                        isValid = false;
-                    } else {
-                        $('#' + errorId).hide();
-                        field.removeClass('error');
-                    }
-                });
-                
-                // Validate email format
-                const email = $('#email').val();
-                if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                    $('#email-error').text('Please enter a valid email address').show();
-                    $('#email').addClass('error');
+                // Personal Information validation
+                if ($('#full-name').val().trim() === '') {
+                    showError('full-name', 'Please enter your full name');
                     isValid = false;
                 }
                 
-                // Validate phone number (Nepali format)
-                const phone = $('#contact-no').val();
-                if (phone && !/^[9][6-8][0-9]{8}$/.test(phone)) {
-                    $('#contact-no-error').text('Please enter a valid Nepali phone number (98XXXXXXXX)').show();
-                    $('#contact-no').addClass('error');
+                if ($('#dob').val() === '') {
+                    showError('dob', 'Please select your date of birth');
                     isValid = false;
                 }
                 
-                // Validate payment verification
-                if (!$('#payment-verification').hasClass('show')) {
-                    $('#payment-error').show();
+                if ($('#citizenship-number').val().trim() === '') {
+                    showError('citizenship', 'Please enter your citizenship number');
+                    isValid = false;
+                }
+                
+                if ($('#current-address').val().trim() === '') {
+                    showError('current-address', 'Please enter your current address');
+                    isValid = false;
+                }
+                
+                if ($('#permanent-address').val().trim() === '') {
+                    showError('permanent-address', 'Please enter your permanent address');
+                    isValid = false;
+                }
+                
+                // Passport photo validation
+                if (!$('#passport-photo').prop('files')[0]) {
+                    showError('passport-photo', 'Please upload your passport photo');
+                    isValid = false;
+                }
+                
+                // Gender validation
+                if (!$('input[name="gender"]:checked').val()) {
+                    showError('gender', 'Please select your gender');
+                    isValid = false;
+                }
+                
+                // Contact information validation
+                if ($('#contact-no').val().trim() === '') {
+                    showError('contact-no', 'Please enter a valid phone number');
+                    isValid = false;
+                }
+                
+                if ($('#email').val().trim() === '' || !isValidEmail($('#email').val().trim())) {
+                    showError('email', 'Please enter a valid email address');
+                    isValid = false;
+                }
+                
+                // Job position validation
+                if ($('#job-position').val().trim() === '') {
+                    showError('job-position', 'Please enter the job position you\'re applying for');
+                    isValid = false;
+                }
+                
+                // Family information validation
+                if (!$('input[name="family-info"]:checked').val()) {
+                    showError('family-info', 'Please select family information option');
                     isValid = false;
                 } else {
-                    $('#payment-error').hide();
+                    const familyInfoType = $('input[name="family-info"]:checked').val();
+                    
+                    if (familyInfoType === 'member') {
+                        if ($('#member-name').val().trim() === '') {
+                            showError('member-name', 'Please enter member name');
+                            isValid = false;
+                        }
+                        
+                        if ($('#member-age').val().trim() === '' || parseInt($('#member-age').val()) < 1 || parseInt($('#member-age').val()) > 120) {
+                            showError('member-age', 'Please enter valid age (1-120)');
+                            isValid = false;
+                        }
+                        
+                        if ($('#member-citizenship').val().trim() === '') {
+                            showError('member-citizenship', 'Please enter citizenship number');
+                            isValid = false;
+                        }
+                    } else if (familyInfoType === 'nominee') {
+                        if ($('#nominee-name').val().trim() === '') {
+                            showError('nominee-name', 'Please enter nominee name');
+                            isValid = false;
+                        }
+                        
+                        if ($('#nominee-citizenship').val().trim() === '') {
+                            showError('nominee-citizenship', 'Please enter citizenship number');
+                            isValid = false;
+                        }
+                    }
+                }
+                
+                // Relation validation
+                if ($('#relation').val().trim() === '') {
+                    showError('relation', 'Please specify your relation');
+                    isValid = false;
+                }
+                
+                // Education validation
+                if ($('#education').val() === null) {
+                    showError('education', 'Please select your education level');
+                    isValid = false;
+                } else if ($('#education').val() !== 'below-slc') {
+                    if ($('#institution-name').val().trim() === '') {
+                        showError('institution-name', 'Please enter institution name');
+                        isValid = false;
+                    }
+                    
+                    if ($('#completion-year').val().trim() === '' || !(/^\d{4}$/.test($('#completion-year').val().trim()))) {
+                        showError('completion-year', 'Please enter valid year (YYYY)');
+                        isValid = false;
+                    }
+                    
+                    if ($('#major-subject').val().trim() === '') {
+                        showError('major-subject', 'Please enter major subject');
+                        isValid = false;
+                    }
+                }
+                
+                // Signature validation
+                if (!$('#signature').prop('files')[0]) {
+                    showError('signature', 'Please upload your signature');
+                    isValid = false;
+                }
+                
+                // Payment validation
+                if (!$('#payment-verification').hasClass('show')) {
+                    showError('payment', 'Please complete the payment process');
+                    isValid = false;
+                }
+                
+                // Terms agreement validation
+                if (!$('#terms-agreement').is(':checked')) {
+                    showError('terms', 'You must agree to the terms and conditions');
+                    isValid = false;
                 }
                 
                 return isValid;
             }
             
+            // Email validation helper
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+            
             // Show error for a specific field
             function showError(fieldId, message) {
-                const field = $('#' + fieldId);
-                const errorId = fieldId + '-error';
-                
-                field.addClass('error');
-                $('#' + errorId).text(message).show();
+                $(`#${fieldId}-error`).text(message).show();
+                $(`#${fieldId}`).addClass('error');
             }
             
             // Handle file uploads for passport photo
             $('#passport-photo').change(function() {
                 const file = this.files[0];
                 if (file) {
-                    // Check file size (max 10MB)
-                    if (file.size > 10 * 1024 * 1024) {
-                        showError('passport-photo', 'File size must be less than 10MB');
-                        return;
-                    }
-                    
-                    // Check file type
-                    if (!file.type.match('image.*')) {
-                        showError('passport-photo', 'Please upload an image file (JPEG, PNG)');
-                        return;
-                    }
-                    
                     const reader = new FileReader();
                     reader.onload = function(e) {
                         $('#passport-photo-preview').html(`
-                            <img src="${e.target.result}" alt="Passport Photo Preview">
-                            <span class="remove-btn" data-target="passport-photo"><i class="fas fa-times"></i> Remove</span>
+                            <div class="file-preview">
+                                <img src="${e.target.result}" alt="Passport Photo">
+                                <span class="remove-btn" data-target="passport-photo"><i class="fas fa-times"></i> Remove</span>
+                            </div>
                         `);
-                        $('#passport-photo-error').hide();
                     }
                     reader.readAsDataURL(file);
+                    $('#passport-photo-error').hide();
                 }
             });
 
@@ -1213,189 +1453,281 @@
             $('#signature').change(function() {
                 const file = this.files[0];
                 if (file) {
-                    // Check file size (max 10MB)
-                    if (file.size > 10 * 1024 * 1024) {
-                        showError('signature', 'File size must be less than 10MB');
-                        return;
-                    }
-                    
-                    // Check file type
-                    if (!file.type.match('image.*')) {
-                        showError('signature', 'Please upload an image file (JPEG, PNG)');
-                        return;
-                    }
-                    
                     const reader = new FileReader();
                     reader.onload = function(e) {
                         $('#signature-preview').html(`
-                            <img src="${e.target.result}" alt="Signature Preview">
-                            <span class="remove-btn" data-target="signature"><i class="fas fa-times"></i> Remove</span>
+                            <div class="file-preview">
+                                <img src="${e.target.result}" alt="Signature">
+                                <span class="remove-btn" data-target="signature"><i class="fas fa-times"></i> Remove</span>
+                            </div>
                         `);
-                        $('#signature-error').hide();
                     }
                     reader.readAsDataURL(file);
+                    $('#signature-error').hide();
                 }
             });
             
             // Handle remove file button
             $(document).on('click', '.remove-btn', function() {
-                const target = $(this).data('target');
-                $('#' + target).val('');
-                $('#' + target + '-preview').empty();
-                $('#' + target + '-error').show();
+                const targetId = $(this).data('target');
+                $(`#${targetId}`).val('');
+                $(`#${targetId}-preview`).empty();
             });
 
             // Handle family information radio buttons
             $('input[name="family-info"]').change(function() {
-                const value = $(this).val();
+                const selectedValue = $(this).val();
                 $('#family-details-section').show();
-                $('#family-info-error').hide();
                 
-                if (value === 'member') {
+                if (selectedValue === 'member') {
                     $('#family-member-details').show();
                     $('#nominee-details').hide();
-                    
-                    // Make member fields required
-                    $('#member-name').attr('required', true);
-                    $('#member-age').attr('required', true);
-                    $('#member-citizenship').attr('required', true);
-                    
-                    // Remove required from nominee fields
-                    $('#nominee-name').removeAttr('required');
-                    $('#nominee-citizenship').removeAttr('required');
-                } else if (value === 'nominee') {
+                } else if (selectedValue === 'nominee') {
                     $('#family-member-details').hide();
                     $('#nominee-details').show();
-                    
-                    // Make nominee fields required
-                    $('#nominee-name').attr('required', true);
-                    $('#nominee-citizenship').attr('required', true);
-                    
-                    // Remove required from member fields
-                    $('#member-name').removeAttr('required');
-                    $('#member-age').removeAttr('required');
-                    $('#member-citizenship').removeAttr('required');
                 }
+                
+                $('#family-info-error').hide();
             });
 
             // Show education details when education level is selected
             $('#education').change(function() {
-                if ($(this).val() !== '') {
+                const selectedValue = $(this).val();
+                
+                if (selectedValue && selectedValue !== 'below-slc') {
                     $('#education-details-section').show();
-                    $('#education-error').hide();
-                    
-                    // Make education details fields required
-                    $('#institution-name').attr('required', true);
-                    $('#completion-year').attr('required', true);
-                    $('#major-subject').attr('required', true);
                 } else {
                     $('#education-details-section').hide();
-                    
-                    // Remove required from education details fields
-                    $('#institution-name').removeAttr('required');
-                    $('#completion-year').removeAttr('required');
-                    $('#major-subject').removeAttr('required');
                 }
+                
+                $('#education-error').hide();
             });
 
             // Initialize Khalti payment
             let config = {
-                // replace this key with actual public key from Khalti
-                "publicKey": "test_public_key_12345abcde",
-                "productIdentity": "job-application-fee",
+                // replace this key with yours
+                "publicKey": "test_public_key_dc74e0fd57cb46cd93832aee0a390234",
+                "productIdentity": "1234567890",
                 "productName": "Job Application Fee",
-                "productUrl": "https://parsajobcenter.com/",
-                "paymentPreference": [
-                    "KHALTI",
-                    "EBANKING",
-                    "MOBILE_BANKING",
-                    "CONNECT_IPS",
-                    "SCT"
-                ],
+                "productUrl": "http://localhost:3000",
                 "eventHandler": {
-                    onSuccess(payload) {
-                        // Handle successful payment
+                    onSuccess (payload) {
+                        // hit merchant api for initiating verification
                         console.log(payload);
-                        // Show payment verification
-                        $('#payment-verification').addClass('show');
-                        $('#receipt-transaction-id').text(payload.idx);
                         
-                        // Format date and time
-                        const now = new Date();
-                        const formattedDate = now.toLocaleDateString('en-NP', {
-                            year: 'numeric',
-                            month: 'short',
-                            day: 'numeric'
-                        });
-                        const formattedTime = now.toLocaleTimeString('en-NP', {
-                            hour: '2-digit',
-                            minute: '2-digit'
-                        });
-                        $('#receipt-datetime').text(`${formattedDate} at ${formattedTime}`);
+                        // Show processing modal
+                        $('#processing-modal').css('display', 'flex');
                         
-                        // Hide payment error
-                        $('#payment-error').hide();
-                        
-                        // Enable submit button if terms are agreed
-                        if ($('#terms-agreement').is(':checked')) {
-                            $('#submit-btn').prop('disabled', false);
-                        }
+                        // Simulate verification process (in a real app, you would verify with Khalti API)
+                        setTimeout(() => {
+                            // Hide processing modal
+                            $('#processing-modal').css('display', 'none');
+                            
+                            // Show payment verification
+                            $('#payment-verification').addClass('show');
+                            $('#receipt-transaction-id').text(payload.idx);
+                            
+                            // Format date and time
+                            const now = new Date();
+                            const formattedDate = now.toLocaleDateString('en-NP', {
+                                year: 'numeric',
+                                month: 'short',
+                                day: 'numeric'
+                            });
+                            const formattedTime = now.toLocaleTimeString('en-NP', {
+                                hour: '2-digit',
+                                minute: '2-digit'
+                            });
+                            $('#receipt-datetime').text(`${formattedDate} at ${formattedTime}`);
+                            
+                            // Hide payment error
+                            $('#payment-error').hide();
+                            
+                            // Enable submit button if terms are agreed
+                            if ($('#terms-agreement').is(':checked')) {
+                                $('#submit-btn').prop('disabled', false);
+                            }
+                        }, 2000);
                     },
-                    onError(error) {
-                        // Handle errors
+                    onError (error) {
                         console.log(error);
-                        alert("Payment failed. Please try again.");
                     },
-                    onClose() {
-                        console.log('Widget is closing');
+                    onClose () {
+                        console.log('widget is closing');
                     }
-                }
+                },
+                "paymentPreference": ["KHALTI", "EBANKING", "MOBILE_BANKING", "CONNECT_IPS", "SCT"],
             };
 
             // Create Khalti checkout
             let checkout = new KhaltiCheckout(config);
             
+            // Add eSewa payment option to the payment section
+            const esewaPaymentOption = `
+                <div class="payment-option esewa" data-payment="esewa">
+                    <img src="https://esewa.com.np/common/images/esewa_logo.png" alt="eSewa">
+                    <div class="payment-option-info">
+                        <span class="payment-option-name">eSewa Digital Wallet</span>
+                        <p class="payment-option-description">Scan QR code to pay</p>
+                    </div>
+                </div>
+            `;
+            
+            // Add eSewa payment option after Khalti option
+            $('.payment-option[data-payment="khalti"]').after(esewaPaymentOption);
+            
+            // Add eSewa payment section
+            const esewaPaymentSection = `
+                <div class="form-group" id="esewa-payment-section" style="display: none;">
+                    <div class="qr-code-container" id="esewa-qr-container">
+                        <h4>Scan this QR code with your eSewa app</h4>
+                        <img src="https://i.ibb.co/Jj1Qy1z/esewa-qr.png" alt="eSewa QR Code" id="esewa-qr-code">
+                        <div class="qr-code-instructions">
+                            <p>1. Open your eSewa app</p>
+                            <p>2. Tap on 'Scan & Pay'</p>
+                            <p>3. Scan this QR code</p>
+                            <p>4. Enter amount: NPR 1500</p>
+                            <p>5. Complete the payment</p>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-verification-form" id="esewa-verification-form">
+                        <div class="form-group">
+                            <label for="esewa-transaction-id" class="form-label required">eSewa Transaction ID</label>
+                            <input type="text" id="esewa-transaction-id" name="esewa-transaction-id" class="form-control" placeholder="Enter your eSewa transaction ID">
+                            <div class="error-message" id="esewa-transaction-id-error">Please enter a valid transaction ID</div>
+                        </div>
+                        <button type="button" id="verify-esewa-btn" class="esewa-button">
+                            Verify Payment
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Add eSewa payment section after Khalti button
+            $('#pay-now-btn').parent().after(esewaPaymentSection);
+            
+            // Handle payment option selection
+            $('.payment-option').click(function() {
+                // Remove active class from all options
+                $('.payment-option').removeClass('active');
+                // Add active class to clicked option
+                $(this).addClass('active');
+                
+                // Get payment method
+                const paymentMethod = $(this).data('payment');
+                
+                // Show/hide appropriate payment sections
+                if (paymentMethod === 'khalti') {
+                    $('#khalti-payment-section').show();
+                    $('#esewa-payment-section').hide();
+                    $('#payment-verification').removeClass('show');
+                } else if (paymentMethod === 'esewa') {
+                    $('#khalti-payment-section').hide();
+                    $('#esewa-payment-section').show();
+                    $('#esewa-qr-container').show();
+                    $('#esewa-verification-form').addClass('show');
+                    $('#payment-verification').removeClass('show');
+                }
+            });
+            
             // Bind Khalti payment button
             $('#pay-now-btn').click(function() {
-                // First validate required fields before payment
-                let isFormValid = true;
-                
-                // Check all required fields except payment and terms
-                $('[required]').not('[name="terms-agreement"]').not('[id="payment-verification"]').each(function() {
-                    if ($(this).is(':checkbox') && !$(this).is(':checked')) {
-                        isFormValid = false;
-                    } else if ($(this).val() === '' || $(this).val() === null) {
-                        isFormValid = false;
-                    }
-                });
-                
-                if (!isFormValid) {
-                    alert('Please fill all required fields before making payment');
-                    validateForm();
-                    return;
-                }
-                
-                // Display payment amount in paisa (1 NPR = 100 paisa)
-                checkout.show({amount: 1500 * 100});
+                // minimum transaction amount must be 10, i.e 1000 paisa
+                checkout.show({amount: 150000});
             });
-
-            // Handle form submission
-            $('#job-application-form').submit(function(e) {
-                e.preventDefault();
+            
+            // Handle eSewa verification
+            $('#verify-esewa-btn').click(function() {
+                const transactionId = $('#esewa-transaction-id').val();
                 
-                // Validate form
-                if (!validateForm()) {
-                    // Scroll to first error
-                    $('html, body').animate({
-                        scrollTop: $('.error').first().offset().top - 100
-                    }, 500);
+                if (!transactionId) {
+                    $('#esewa-transaction-id-error').show();
                     return;
                 }
                 
                 // Show processing modal
                 $('#processing-modal').css('display', 'flex');
                 
-                // Collect form data
+                // Simulate verification process (in a real app, you would verify with eSewa API)
+                setTimeout(() => {
+                    // Hide processing modal
+                    $('#processing-modal').css('display', 'none');
+                    
+                    // Show payment verification
+                    $('#payment-verification').addClass('show');
+                    $('#receipt-transaction-id').text(transactionId);
+                    $('#receipt-payment-method').text('eSewa Digital Wallet');
+                    
+                    // Format date and time
+                    const now = new Date();
+                    const formattedDate = now.toLocaleDateString('en-NP', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                    });
+                    const formattedTime = now.toLocaleTimeString('en-NP', {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    $('#receipt-datetime').text(`${formattedDate} at ${formattedTime}`);
+                    
+                    // Hide payment error
+                    $('#payment-error').hide();
+                    
+                    // Enable submit button if terms are agreed
+                    if ($('#terms-agreement').is(':checked')) {
+                        $('#submit-btn').prop('disabled', false);
+                    }
+                }, 2000);
+            });
+
+            // Handle terms agreement checkbox
+            $('#terms-agreement').change(function() {
+                if ($(this).is(':checked') && $('#payment-verification').hasClass('show')) {
+                    $('#submit-btn').prop('disabled', false);
+                } else {
+                    $('#submit-btn').prop('disabled', true);
+                }
+                
+                $('#terms-error').hide();
+            });
+
+            // Handle clear form button
+            $('#clear-btn').click(function() {
+                $('#job-application-form')[0].reset();
+                $('.file-preview').empty();
+                $('.error-message').hide();
+                $('#family-details-section').hide();
+                $('#education-details-section').hide();
+                $('#payment-verification').removeClass('show');
+                $('#submit-btn').prop('disabled', true);
+            });
+
+            // Handle form submission
+            $('#job-application-form').submit(function(e) {
+                e.preventDefault();
+                
+                // Reset error messages
+                $('.error-message').hide();
+                $('.form-control').removeClass('error');
+                
+                // Validate form
+                if (!validateForm()) {
+                    // Scroll to the first error
+                    const firstError = $('.error-message:visible').first();
+                    if (firstError.length) {
+                        $('html, body').animate({
+                            scrollTop: firstError.offset().top - 100
+                        }, 500);
+                    }
+                    return;
+                }
+                
+                // Show processing modal
+                $('#processing-modal').css('display', 'flex');
+                
+                // Get form data
                 const formData = {
                     'full-name': $('#full-name').val(),
                     'dob': $('#dob').val(),
@@ -1407,119 +1739,76 @@
                     'email': $('#email').val(),
                     'job-position': $('#job-position').val(),
                     'family-info': $('input[name="family-info"]:checked').val(),
-                    'member-name': $('#member-name').val(),
-                    'member-age': $('#member-age').val(),
-                    'member-citizenship': $('#member-citizenship').val(),
-                    'nominee-name': $('#nominee-name').val(),
-                    'nominee-citizenship': $('#nominee-citizenship').val(),
                     'relation': $('#relation').val(),
                     'education': $('#education').val(),
-                    'institution-name': $('#institution-name').val(),
-                    'completion-year': $('#completion-year').val(),
-                    'major-subject': $('#major-subject').val(),
                     'transactionId': $('#receipt-transaction-id').text(),
+                    'paymentMethod': $('#receipt-payment-method').text(),
                     'paymentDate': $('#receipt-datetime').text(),
                     'applicationId': 'APP-' + Math.floor(100000 + Math.random() * 900000)
                 };
                 
-                // Get files
-                const passportPhoto = $('#passport-photo')[0].files[0];
-                const signature = $('#signature')[0].files[0];
+                // Add family info details based on selection
+                if (formData['family-info'] === 'member') {
+                    formData['member-name'] = $('#member-name').val();
+                    formData['member-age'] = $('#member-age').val();
+                    formData['member-citizenship'] = $('#member-citizenship').val();
+                } else if (formData['family-info'] === 'nominee') {
+                    formData['nominee-name'] = $('#nominee-name').val();
+                    formData['nominee-citizenship'] = $('#nominee-citizenship').val();
+                }
                 
-                // Simulate processing delay
+                // Add education details if applicable
+                if (formData.education !== 'below-slc') {
+                    formData['institution-name'] = $('#institution-name').val();
+                    formData['completion-year'] = $('#completion-year').val();
+                    formData['major-subject'] = $('#major-subject').val();
+                }
+                
+                // Get files
+                const passportPhoto = $('#passport-photo').prop('files')[0];
+                const signature = $('#signature').prop('files')[0];
+                
+                // Set application ID in the success modal
+                $('#application-id').text(formData.applicationId);
+                
+                // Simulate form submission (in a real app, you would send data to server)
                 setTimeout(() => {
                     // Hide processing modal
                     $('#processing-modal').css('display', 'none');
-                    
-                    // Set application ID
-                    $('#application-id').text(formData.applicationId);
                     
                     // Show success modal
                     $('#success-modal').css('display', 'flex');
                     
                     // Send data to WhatsApp
                     sendToWhatsApp(formData, passportPhoto, signature);
-                    
-                    // Reset form after successful submission
-                    $('#job-application-form')[0].reset();
-                    $('#passport-photo-preview').empty();
-                    $('#signature-preview').empty();
-                    $('#family-details-section').hide();
-                    $('#education-details-section').hide();
-                    $('#payment-verification').removeClass('show');
-                    $('#submit-btn').prop('disabled', true);
-                    $('.error-message').hide();
-                    $('.form-control').removeClass('error');
                 }, 2000);
             });
 
-            // Clear form button
-            $('#clear-btn').click(function() {
-                if (confirm('Are you sure you want to clear all form data?')) {
-                    $('#job-application-form')[0].reset();
-                    $('#passport-photo-preview').empty();
-                    $('#signature-preview').empty();
-                    $('#family-details-section').hide();
-                    $('#education-details-section').hide();
-                    $('#payment-verification').removeClass('show');
-                    $('#submit-btn').prop('disabled', true);
-                    $('.error-message').hide();
-                    $('.form-control').removeClass('error');
-                }
+            // Handle modal close buttons
+            $('#close-success-modal, #close-success-btn').click(function() {
+                $('#success-modal').css('display', 'none');
+                
+                // Reset form after successful submission
+                $('#job-application-form')[0].reset();
+                $('.file-preview').empty();
+                $('.error-message').hide();
+                $('#family-details-section').hide();
+                $('#education-details-section').hide();
+                $('#payment-verification').removeClass('show');
+                $('#submit-btn').prop('disabled', true);
             });
 
-            // Handle modal close buttons
-            $('.modal-close, #close-success-btn').click(function() {
-                $('.modal-overlay').css('display', 'none');
+            // Handle input focus to hide error messages
+            $('.form-control, .dropdown-select').focus(function() {
+                const id = $(this).attr('id');
+                $(`#${id}-error`).hide();
+                $(this).removeClass('error');
             });
-            
-            // Enable submit button when terms are agreed and payment is verified
-            $('#terms-agreement').change(function() {
-                if ($(this).is(':checked') && $('#payment-verification').hasClass('show')) {
-                    $('#submit-btn').prop('disabled', false);
-                    $('#terms-error').hide();
-                } else {
-                    $('#submit-btn').prop('disabled', true);
-                }
-            });
-            
-            // Real-time validation for fields
-            $('input, select, textarea').on('input change', function() {
-                const field = $(this);
-                const errorId = field.attr('id') + '-error';
-                
-                if (field.is(':checkbox')) {
-                    if (field.is(':checked')) {
-                        $('#' + errorId).hide();
-                    }
-                } else if (field.val()) {
-                    $('#' + errorId).hide();
-                    field.removeClass('error');
-                }
-            });
-            
-            // Validate email on blur
-            $('#email').on('blur', function() {
-                const email = $(this).val();
-                if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                    showError('email', 'Please enter a valid email address');
-                }
-            });
-            
-            // Validate phone number on blur
-            $('#contact-no').on('blur', function() {
-                const phone = $(this).val();
-                if (phone && !/^[9][6-8][0-9]{8}$/.test(phone)) {
-                    showError('contact-no', 'Please enter a valid Nepali phone number (98XXXXXXXX)');
-                }
-            });
-            
-            // Validate year format on blur
-            $('#completion-year').on('blur', function() {
-                const year = $(this).val();
-                if (year && !/^\d{4}$/.test(year)) {
-                    showError('completion-year', 'Please enter valid year (YYYY)');
-                }
+
+            // Handle radio button change to hide error messages
+            $('input[type="radio"]').change(function() {
+                const name = $(this).attr('name');
+                $(`#${name}-error`).hide();
             });
         });
     </script>
